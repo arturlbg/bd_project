@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Concessionária</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Concessionária</h1>
+        <hr>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Código Marca</th>
+                        <th>Num Portas</th>
+                        <th>Ano</th>
+                        <th>Cor</th>
+                        <th>Valor</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in obj %}
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="https://media.istockphoto.com/id/1150931120/pt/foto/3d-illustration-of-generic-compact-white-car-front-side-view.jpg?s=612x612&w=0&k=20&c=X5y9yhPGjjQXbljPUBr18Ui4l5qSSvHcaUz23_2-mgA=" alt="" style="width: 45px; height: 45px" class="rounded-circle">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{x.modelo}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{x.codmarca}}</td>
+                        <td>{{x.numportas}}</td>
+                        <td>{{x.ano}}</td>
+                        <td>{{x.cor}}</td>
+                        <td>{{x.valor}}</td>
+                        <td>
+                            <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+</html>
