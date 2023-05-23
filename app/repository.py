@@ -22,6 +22,15 @@ class VeiculoRepository:
             query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca, cor, valor) VALUES (" + values + ")" 
             cursor.execute(query)
 
+    def update(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            print(data)
+            values = "modelo = '{}', numportas = '{}', ano = '{}', codmarca = '{}', cor = '{}', valor = {}".format(data["modelo"], data["numportas"], data["ano"],
+                                                                                                                    data["codmarca"], data["cor"], data["valor"])
+            query = "UPDATE public.veiculo SET {} WHERE idVeiculo = {}".format(values, data["idveiculo"]) 
+            cursor.execute(query)
+
 class ClienteRepository:
     def findAll(self):
         with connection.cursor() as cursor:

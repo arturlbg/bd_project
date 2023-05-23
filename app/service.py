@@ -16,8 +16,11 @@ class VeiculoService:
     
     def create(self, modelo):
         repository = VeiculoRepository()
-        print(modelo)
         repository.create(modelo)
+    
+    def update(self, modelo):
+        repository = VeiculoRepository()
+        repository.update(modelo)
     
 class ClienteService:
     def findAll(self):

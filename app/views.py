@@ -14,6 +14,13 @@ def veiculo(request):
     return render(request, "Veiculo/index.html", context)
 
 def get_veiculo(request, id):
+    if request.method == 'POST':
+        form = VeiculoForm(request.POST)
+        if form.is_valid():
+            form.cleaned_data['idveiculo'] = id
+            service = VeiculoService()
+            service.update(form)
+        
     service = VeiculoService()
     obj = service.findById(id)
     context = {
@@ -25,8 +32,6 @@ def novo_veiculo(request):
     if request.method == 'POST':
         form = VeiculoForm(request.POST)
         if form.is_valid():
-            print(form.fields.keys())
-            print(form.cleaned_data)
             service = VeiculoService()
             service.create(form)
     else:
