@@ -1,83 +1,85 @@
 from django.db import models
 
+# Create your models here.
 class Veiculo(models.Model):
-    idVeiculo = models.AutoField(primary_key=True)
+    idveiculo = models.AutoField(primary_key=True)
     valor = models.FloatField()
-    codMarca = models.CharField(max_length=20)
-    numPortas = models.CharField(max_length=1)
+    codmarca = models.CharField(max_length=20)
+    numportas = models.CharField(max_length=1)
     ano = models.CharField(max_length=4)
     modelo = models.CharField(max_length=30)
     cor = models.CharField(max_length=20)
+
     def __str__(self):
-        return self.modelo
-    
+         return self.modelo
+     
     class Meta:
-        db_table = "Veiculo"
+         db_table = "veiculo"
 
 class Servico(models.Model):
-    idServico = models.AutoField(primary_key=True)
-    idVeiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
-    codServico = models.CharField(max_length=20)
-    valorServico = models.FloatField()
-    dataServico = models.DateField()
+    idservico = models.AutoField(primary_key=True)
+    idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+    codservico = models.CharField(max_length=20)
+    valorservico = models.FloatField()
+    dataservico = models.DateField()
     
     def __str__(self):
-        return self.codServico
+        return self.codservico
     
     class Meta:
-        db_table = "Servico"
+        db_table = "servico"
 
 class Funcionario(models.Model):
-    idFuncionario = models.AutoField(primary_key=True)
+    idfuncionario = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
-    codCargo = models.CharField(max_length=20)
+    codcargo = models.CharField(max_length=20)
     salario = models.FloatField()
-    dataAdmissao = models.DateField()
+    dataadmissao = models.DateField()
     
     def __str__(self):
         return self.nome
     
     class Meta:
-        db_table = "Funcionario"
+        db_table = "funcionario"
 
 class Cliente(models.Model):
-    idCliente = models.AutoField(primary_key=True)
+    idcliente = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     endereco = models.CharField(max_length=100)
     telefone = models.CharField(max_length=14)
     email = models.CharField(max_length=50)
-    ehFlamengo = models.BooleanField()
-    ehOtaku = models.BooleanField()
-    ehSousa = models.BooleanField()
+    ehflamengo = models.BooleanField()
+    ehotaku = models.BooleanField()
+    ehsousa = models.BooleanField()
     
     def __str__(self):
         return self.nome
     
     class Meta:
-        db_table = "Cliente"
+        db_table = "cliente"
 
 class Agendamento(models.Model):
-    idAgendamento = models.AutoField(primary_key=True)
-    idVeiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
-    idCliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    codServico = models.ForeignKey(Servico, on_delete=models.CASCADE)
-    dataAgendamento = models.DateField()
+    idagendamento = models.AutoField(primary_key=True)
+    idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+    idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    codservico = models.ForeignKey(Servico, on_delete=models.CASCADE)
+    dataagendamento = models.DateField()
     
     def __str__(self):
-        return self.idAgendamento
+        return self.idagendamento
     
     class Meta:
-        db_table = "Agendamento"
+        db_table = "agendamento"
 
 class Venda(models.Model):
-    idVenda = models.AutoField(primary_key=True)
-    idVeiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
-    idCliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    dataVenda = models.DateField()
-    valorVenda = models.FloatField()
+    idvenda = models.AutoField(primary_key=True)
+    idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+    idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    datavenda = models.DateField()
+    valorvenda = models.FloatField()
     
     def __str__(self):
-        return self.idVenda
+        return self.idvenda
     
     class Meta:
-        db_table = "Venda"
+        db_table = "venda"
