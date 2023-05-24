@@ -58,7 +58,8 @@
                         <td>{{x.cor}}</td>
                         <td>{{x.valor}}</td>
                         <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
+                            <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button">
+                                Edit</button>
                         </td>
                     </tr>
                     {% endfor %}
