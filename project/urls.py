@@ -20,8 +20,11 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('veiculo/', veiculo, name="veiculo"),
-    path('veiculo/novo', novo_veiculo, name="novo_veiculo"),
-    path('veiculo/edit/<int:id>', get_veiculo, name='get_veiculo'),
     path('cliente/', cliente, name="cliente"),
+    path('funcionario/', funcionario, name="funcionario"),
+    path('funcionario/novo/', novo_funcionario, name="novo_funcionario"),
+    path('veiculo/', veiculo, name="veiculo"),
+    path('veiculo/novo/', novo_veiculo, name="novo_veiculo"),
+    path('veiculo/edit/<int:id>', get_veiculo, name='get_veiculo'),
+
 ]
