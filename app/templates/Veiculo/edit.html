@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-  <title>Formulário</title>
+  <title>Atualizar dados do veículo</title>
   <style>
     .form-container {
       max-width: 400px;
@@ -19,7 +19,7 @@
 <body>
   <div class="container">
     <div class="form-container">
-      <h1>Editar Veículo</h1>
+      <h1>Editar veículo</h1>
       <form class="needs-validation" method="post" novalidate>
         {% csrf_token %}
         <div class="mb-3">
@@ -27,11 +27,11 @@
           <input value={{obj.5}} name="modelo" type="text" class="form-control" id="modelo" placeholder="Insira o Modelo" required>
         </div>
         <div class="mb-3">
-            <label for="codmarca" class="form-label">Código da Marca</label>
-            <input value={{obj.6}} name="codmarca" type="text" class="form-control" id="codmarca" placeholder="Insira o Código da Marca" required>
+            <label for="codmarca" class="form-label">Código da marca</label>
+            <input value={{obj.2}} name="codmarca" type="text" class="form-control" id="codmarca" placeholder="Insira o Código da Marca" required>
           </div>
         <div class="mb-3">
-          <label for="numportas" class="form-label">Número de Portas</label>
+          <label for="numportas" class="form-label">Número de portas</label>
           <input value={{obj.3}} name="numportas" type="text" class="form-control" id="numportas" placeholder="Insira o número de portas" required></input>
         </div>
         <div class="mb-3">
@@ -46,7 +46,7 @@
           <label for="valor" class="form-label">Valor</label>
           <input value={{obj.1}} name="valor" type="number" class="form-control" id="valor" placeholder="Insira o valor" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Atualizar dados</button>
       </form>
     </div>
   </div>
