@@ -7,9 +7,21 @@ class VeiculoService:
     def findAll(self):
         repository = VeiculoRepository()
         obj = repository.findAll()
-        json = convert_to_json.convert_to_json(['idveiculo', 'valor', 'codmarca',
-                                                'numportas', 'ano', 'modelo', 'cor'], obj)
-        return json
+        obj_modified = []
+        for item in obj:
+            item_dict = {
+                'idveiculo': item[0],
+                'valor': float(item[1]),
+                'codmarca': item[2],
+                'numportas': item[3],
+                'ano': item[4],
+                'modelo': item[5],
+                'cor': item[6]
+            }
+            obj_modified.append(item_dict)
+
+        json_data = json.dumps(obj_modified)
+        return json_data
 
     def findById(self, id):
         repository = VeiculoRepository()
@@ -37,6 +49,10 @@ class ClienteService:
         repository = ClienteRepository()
         obj = repository.findById(id)
         return obj
+    
+    def create(self, modelo):
+        repository = ClienteRepository()
+        repository.create(modelo)
 
 class FuncionarioService:
     def findAll(self):
@@ -49,7 +65,7 @@ class FuncionarioService:
                 'idfuncionario': item[0],
                 'nome': item[1],
                 'codcargo': item[2],
-                'salario': item[3],
+                'salario': float(item[3]),
                 'dataadmissao': item[4].strftime('%Y-%m-%d')
             }
             obj_modified.append(item_dict)
@@ -60,7 +76,18 @@ class FuncionarioService:
                                                 'salario', 'dataadmissao'], obj)
         return json
         '''
+    def findById(self, id):
+        repository = FuncionarioRepository()
+        obj = repository.findById(id)
+        return obj
+    
+    def create(self, modelo):
+        repository = FuncionarioRepository()
+        repository.create(modelo)
 
+    def update(self, modelo):
+        repository = FuncionarioRepository()
+        repository.update(modelo)
     
 class ServicoService:
     def findById(self, id):

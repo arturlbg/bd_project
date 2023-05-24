@@ -1,15 +1,20 @@
 from django import forms
 from .models import *
 
-class VeiculoForm(forms.ModelForm):
+class ClienteForm(forms.ModelForm):
     class Meta:
-        model = Veiculo
-        fields = ['modelo', 'numportas', 'ano', 'codmarca', 'cor', 'valor']
-
+        model = Cliente
+        fields = ['nome', 'endereco', 'telefone', 'email', 'ehflamengo', 'ehotaku', 'ehsousa']
+        
 class FuncionarioForm(forms.ModelForm):
     class Meta:
         model = Funcionario
         fields = ['nome', 'codcargo', 'salario', 'dataadmissao']
+
+class VeiculoForm(forms.ModelForm):
+    class Meta:
+        model = Veiculo
+        fields = ['modelo', 'numportas', 'ano', 'codmarca', 'cor', 'valor']
         
 class ServicoForm(forms.ModelForm):
     class Meta:

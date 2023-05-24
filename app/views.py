@@ -13,7 +13,7 @@ def veiculo(request):
     }
     return render(request, "Veiculo/index.html", context)
 
-def get_veiculo(request, id):
+def edit_veiculo(request, id):
     if request.method == 'POST':
         form = VeiculoForm(request.POST)
         if form.is_valid():
@@ -46,6 +46,15 @@ def cliente(request):
     }
     return render(request, "Cliente/index.html", context)
 
+def novo_cliente(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            service = ClienteService()
+            service.create(form)
+
+    return render(request, 'Cliente/new.html')
+
 def funcionario(request):
     service = FuncionarioService()
     obj = service.findAll()
@@ -55,7 +64,14 @@ def funcionario(request):
     }
     return render(request, "Funcionario/index.html", context)
 
-def get_funcionario(request, id):
+def edit_funcionario(request, id):
+    if request.method == 'POST':
+        form = FuncionarioForm(request.POST)
+        if form.is_valid():
+            form.cleaned_data['idfuncionario'] = id
+            service = FuncionarioService()
+            service.update(form)
+            
     service = FuncionarioService()
     obj = service.findById(id)
     context = {
@@ -71,8 +87,10 @@ def novo_funcionario(request):
             print(form.cleaned_data)
             service = FuncionarioService()
             service.create(form)
-    else:
-        form = FuncionarioForm()
+    
+    return render(request, 'Funcionario/new.html')
+
+
 def novo_servico(request):
     if request.method == 'POST':
         form = ServicoForm(request.POST)

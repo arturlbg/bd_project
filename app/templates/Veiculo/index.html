@@ -1,25 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Concessionária CI</title>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Veiculos</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+  </head>
 <body>
     <div class="container">
         <h1 class="text-center">Lista de veículos</h1>
@@ -54,7 +41,7 @@
                         <td>{{x.cor}}</td>
                         <td>{{x.valor}}</td>
                         <td>
-                            <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button">Editar</button>
+                            <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
                         </td>
                     </tr>
                     {% endfor %}

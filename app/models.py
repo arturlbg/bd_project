@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Veiculo(models.Model):
     idveiculo = models.AutoField(primary_key=True)
-    valor = models.FloatField()
+    valor = models.DecimalField(max_digits=7, decimal_places=2)
     codmarca = models.CharField(max_length=20)
     numportas = models.CharField(max_length=1)
     ano = models.CharField(max_length=4)
@@ -20,8 +20,8 @@ class Servico(models.Model):
     idservico = models.AutoField(primary_key=True)
     idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
     codservico = models.CharField(max_length=20)
-    valorservico = models.FloatField()
-    dataservico = models.DateField()
+    valorservico = models.DecimalField(max_digits=7, decimal_places=2)
+    dataservico = models.DateField(max_length=10)
     
     def __str__(self):
         return self.codservico
@@ -33,8 +33,8 @@ class Funcionario(models.Model):
     idfuncionario = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     codcargo = models.CharField(max_length=20)
-    salario = models.FloatField()
-    dataadmissao = models.DateField()
+    salario = models.DecimalField(max_digits=7, decimal_places=2)
+    dataadmissao = models.DateField(max_length=10)
     
     def __str__(self):
         return self.nome
@@ -75,8 +75,8 @@ class Venda(models.Model):
     idvenda = models.AutoField(primary_key=True)
     idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
     idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    datavenda = models.DateField()
-    valorvenda = models.FloatField()
+    datavenda = models.DateField(max_length=10)
+    valorvenda = models.DecimalField(max_digits=7, decimal_places=2)
     
     def __str__(self):
         return self.idvenda
