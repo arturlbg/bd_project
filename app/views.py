@@ -46,6 +46,33 @@ def cliente(request):
     }
     return render(request, "Cliente/index.html", context)
 
+def funcionario(request):
+    service = FuncionarioService()
+    obj = service.findAll()
+    obj = json.loads(obj)
+    context = {
+        "obj": obj,
+    }
+    return render(request, "Funcionario/index.html", context)
+
+def get_funcionario(request, id):
+    service = FuncionarioService()
+    obj = service.findById(id)
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Funcionario/edit.html', context)
+
+def novo_funcionario(request):
+    if request.method == 'POST':
+        form = FuncionarioForm(request.POST)
+        if form.is_valid():
+            print(form.fields.keys())
+            print(form.cleaned_data)
+            service = FuncionarioService()
+            service.create(form)
+    else:
+        form = FuncionarioForm()
 def novo_servico(request):
     if request.method == 'POST':
         form = ServicoForm(request.POST)
@@ -60,3 +87,5 @@ def novo_servico(request):
     }
     return render(request, 'Servico/new.html', context)
 
+
+    return render(request, 'Funcionario/new.html')

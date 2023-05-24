@@ -46,6 +46,29 @@ class ClienteRepository:
             result = cursor.fetchone()
         return result
     
+class FuncionarioRepository:
+    def findAll(self):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.funcionario"
+            cursor.execute(query)
+            results = cursor.fetchall()
+        return results
+
+    def findById(self, id):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.funcionario WHERE idFuncionario = %s"
+            cursor.execute(query, [id])
+            result = cursor.fetchone()
+        return result
+    
+    def create(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "'{}', '{}', '{}', '{}'".format(data["nome"], data["codcargo"], data["salario"], data["dataadmissao"])
+            query = "INSERT INTO public.funcionario (nome, codcargo, salario, dataadmissao) VALUES (" + values + ")" 
+            cursor.execute(query)
+
+    
 class ServicoRepository:
     def findAll(self):
         with connection.cursor() as cursor:
