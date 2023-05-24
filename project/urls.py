@@ -23,5 +23,6 @@ urlpatterns = [
     path('veiculo/', veiculo, name="veiculo"),
     path('veiculo/novo', novo_veiculo, name="novo_veiculo"),
     path('veiculo/edit/<int:id>', get_veiculo, name='get_veiculo'),
+    path('servico/novo', novo_servico, name="novo_servico"),
     path('cliente/', cliente, name="cliente"),
 ]

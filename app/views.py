@@ -34,8 +34,6 @@ def novo_veiculo(request):
         if form.is_valid():
             service = VeiculoService()
             service.create(form)
-    else:
-        form = VeiculoForm()
 
     return render(request, 'Veiculo/new.html')
 
@@ -47,4 +45,18 @@ def cliente(request):
         "obj": obj,
     }
     return render(request, "Cliente/index.html", context)
+
+def novo_servico(request):
+    if request.method == 'POST':
+        form = ServicoForm(request.POST)
+        if form.is_valid():
+            service = ServicoService()
+            service.create(form)
+
+    veiculo_service = VeiculoService()
+    veiculo = json.loads(veiculo_service.findAll())
+    context = {
+        "veiculo": veiculo
+    }
+    return render(request, 'Servico/new.html', context)
 

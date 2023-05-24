@@ -35,3 +35,13 @@ class ClienteService:
         repository = ClienteRepository()
         obj = repository.findById(id)
         return obj
+    
+class ServicoService:
+    def findById(self, id):
+        repository = ServicoRepository()
+        obj = repository.findById(id)
+        return obj
+
+    def create(self, modelo):
+        repository = ServicoRepository()
+        repository.create(modelo)
