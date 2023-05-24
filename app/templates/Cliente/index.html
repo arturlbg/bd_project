@@ -60,7 +60,7 @@
                         <td>{{x.ehotaku}}</td>
                         <td>{{x.ehsousa}}</td>
                         <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
+                            <button onclick="location.href='/cliente/edit/{{x.idcliente}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
                         </td>
                     </tr>
                     {% endfor %}
