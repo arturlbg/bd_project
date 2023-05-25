@@ -58,6 +58,10 @@ class ClienteService:
         repository = ClienteRepository()
         repository.create(modelo)
 
+    def update(self, modelo):
+        repository = ClienteRepository()
+        repository.update(modelo)
+
 class FuncionarioService:
     def findAll(self):
         repository = FuncionarioRepository()

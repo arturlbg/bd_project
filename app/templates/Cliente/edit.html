@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <title>Atualizar dados do cliente</title>
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Atualizar meus dados</h1>
+            <form class="needs-validation" method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome completo</label>
+                    <input value={{obj.1}} name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
+                </div>
+
+                <div class="mb-3">
+                    <label for="endereco" class="form-label">Endereço</label>
+                    <input value={{obj.2}} name="endereco" type="text" class="form-control" id="endereco" placeholder="Insira o endereço" required minlength="3" maxlength="100">
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input value={{obj.3}} name="telefone" type="text" class="form-control" id="telefone" placeholder="Insira o telefone" required minlength="3" maxlength="14">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input value={{obj.4}} name="email" type="text" class="form-control" id="email" placeholder="Insira o e-mail" required minlength="3" maxlength="50">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Você é flamenguista?</label>
+                    <div class="form-check">
+                        <input name="ehflamengo" type="radio" id="ehflamengo" class="form-check-input" value="false" {% if obj.5 == False %}checked{% endif %} required>
+                        <label value={{obj.5}} class="form-check-label" for="ehflamengo">Não</label>
+                    </div>
+                    <div class="form-check">
+                        <input name="ehflamengo" type="radio" id="ehflamengo" class="form-check-input" value="true" {% if obj.5 == True %}checked{% endif %} required>
+                        <label value={{obj.6}} class="form-check-label" for="ehflamengo">Sim</label>
+                    </div>
+                </div>
+            
+                <div class="mb-3">
+                    <label class="form-label">Você é otaku?</label>
+                    <div class="form-check">
+                        <input name="ehotaku" type="radio" id="ehotaku-nao" class="form-check-input" value="false" {% if obj.6 == False %}checked{% endif %} required>
+                        <label value={{obj.7}} class="form-check-label" for="ehotaku-nao">Não</label>
+                    </div>
+                    <div class="form-check">
+                        <input name="ehotaku" type="radio" id="ehotaku" class="form-check-input" value="true" {% if obj.6 == True %}checked{% endif %} required>
+                        <label value={{obj.8}} class="form-check-label" for="ehotaku">Sim</label>
+                    </div>
+                </div>
+            
+                <div class="mb-3">
+                    <label class="form-label">Você nasceu em Sousa-PB?</label>
+                    <div class="form-check">
+                        <input name="ehsousa" type="radio" id="ehsousa" class="form-check-input" value="false" {% if obj.7 == False %}checked{% endif %} required>
+                        <label class="form-check-label" for="ehsousa">Não</label>
+                    </div>
+                    <div class="form-check">
+                        <input name="ehsousa" type="radio" id="ehsousa" class="form-check-input" value="true" {% if obj.7 == True %}checked{% endif %} required>
+                        <label class="form-check-label" for="ehsousa">Sim</label>
+                    </div>
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>

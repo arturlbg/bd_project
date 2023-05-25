@@ -67,6 +67,21 @@ def novo_cliente(request):
 
     return render(request, 'Cliente/new.html')
 
+def edit_cliente(request, id):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.cleaned_data['idcliente'] = id
+            service = ClienteService()
+            service.update(form)
+        
+    service = ClienteService()
+    obj = service.findById(id)
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Cliente/edit.html', context)
+
 def funcionario(request):
     service = FuncionarioService()
     obj = service.findAll()
