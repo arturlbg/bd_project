@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Veiculo(models.Model):
     idveiculo = models.AutoField(primary_key=True)
     valor = models.DecimalField(max_digits=7, decimal_places=2)
@@ -15,19 +14,6 @@ class Veiculo(models.Model):
      
     class Meta:
          db_table = "veiculo"
-
-class Servico(models.Model):
-    idservico = models.AutoField(primary_key=True)
-    idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
-    codservico = models.CharField(max_length=20)
-    valorservico = models.DecimalField(max_digits=7, decimal_places=2)
-    dataservico = models.DateField(max_length=10)
-    
-    def __str__(self):
-        return self.codservico
-    
-    class Meta:
-        db_table = "servico"
 
 class Funcionario(models.Model):
     idfuncionario = models.AutoField(primary_key=True)
@@ -57,19 +43,6 @@ class Cliente(models.Model):
     
     class Meta:
         db_table = "cliente"
-
-class Agendamento(models.Model):
-    idagendamento = models.AutoField(primary_key=True)
-    idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
-    idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    codservico = models.ForeignKey(Servico, on_delete=models.CASCADE)
-    dataagendamento = models.DateField()
-    
-    def __str__(self):
-        return self.idagendamento
-    
-    class Meta:
-        db_table = "agendamento"
 
 class Venda(models.Model):
     idvenda = models.AutoField(primary_key=True)
