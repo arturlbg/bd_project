@@ -40,6 +40,16 @@ def delete_veiculo(request, id):
     }
     return render(request, 'Veiculo/index.html', context)
 
+def search_veiculo(request, modelo):
+    service = VeiculoService()
+    obj = service.findByModelo(modelo)
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Veiculo/search.html', context)
+
 def novo_veiculo(request):
     if request.method == 'POST':
         form = VeiculoForm(request.POST)
@@ -110,13 +120,32 @@ def novo_funcionario(request):
     if request.method == 'POST':
         form = FuncionarioForm(request.POST)
         if form.is_valid():
-            print(form.fields.keys())
-            print(form.cleaned_data)
             service = FuncionarioService()
             service.create(form)
     
     return render(request, 'Funcionario/new.html')
 
+def delete_funcionario(request, id):
+    service = FuncionarioService()
+    if request.method == 'DELETE':
+        service.delete(id)
+    
+    obj = service.findAll()
+    obj = json.loads(obj)
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Funcionario/index.html', context)
+
+def search_funcionario(request, nome):
+    service = FuncionarioService()
+    obj = service.findByNome(nome)
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Funcionario/search.html', context)
 
 def novo_servico(request):
     if request.method == 'POST':

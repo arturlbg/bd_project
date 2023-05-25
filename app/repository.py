@@ -35,6 +35,16 @@ class VeiculoRepository:
             query = "DELETE FROM public.veiculo WHERE idVeiculo = %s"
             cursor.execute(query, [id])
 
+    def findByModelo(self, modelo):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.veiculo WHERE LOWER(modelo) = LOWER('{}')".format(modelo)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+        return result
+    
+
 class ClienteRepository:
     def findAll(self):
         with connection.cursor() as cursor:
@@ -85,6 +95,11 @@ class FuncionarioRepository:
             result = cursor.fetchone()
         return result
     
+    def delete(self, id):
+        with connection.cursor() as cursor:
+            query = "DELETE FROM public.funcionario WHERE idFuncionario = %s"
+            cursor.execute(query, [id])
+    
     def create(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
@@ -99,6 +114,15 @@ class FuncionarioRepository:
                                                                                                                     data["dataadmissao"])
             query = "UPDATE public.funcionario SET {} WHERE idFuncionario = {}".format(values, data["idfuncionario"]) 
             cursor.execute(query)
+
+    def findByNome(self, nome):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.funcionario WHERE LOWER(nome) LIKE LOWER('%{}%')".format(nome)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+        return result
 
     
 class ServicoRepository:

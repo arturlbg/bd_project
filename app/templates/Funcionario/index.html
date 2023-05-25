@@ -17,11 +17,49 @@
         <![endif]-->
     </head>
 
+    <script>
+        function deleteById(id) {
+            var csrftoken = '{{ csrf_token }}';
+            fetch(`/funcionario/delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                console.log("Deletado com sucesso!");
+                } else {
+                console.log("Erro ao deletar");
+                }
+            })
+            .catch(error => {
+                console.log("Erro:", error);
+            });
+        };
+
+        function pesquisarFuncionario() {
+            var consulta = document.getElementById('consulta').value;
+            if (consulta.trim() !== '') {
+                var url = '/funcionario/search/' + encodeURIComponent(consulta).toString();
+                window.location.href = url;
+            }
+        }
+
+      </script>
+
     <body>
         
         <div class="container">
             <h1 class="text-center">Lista de funcionários</h1>
             <hr>
+
+            <div class="mb-3">
+                <label for="consulta" class="form-label"><b>Pesquise funcionários por nome:</b></label>
+                <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o modelo" required minlength="3" maxlength="20">
+                <button onclick="pesquisarFuncionario()" type="button" class="btn-link btn-sm btn-rounded">Pesquisar</button>
+            </div>
 
             <div class="table-responsive">
                 <table class="table align-middle mb-0 bg-white">
@@ -52,6 +90,7 @@
                             <td>{{x.dataadmissao}}</td>
                             <td>
                                 <button onclick="location.href='/funcionario/edit/{{x.idfuncionario}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
+                                <button onclick="deleteById('{{x.idfuncionario}}')" type="button" class="btn-link btn-sm btn-rounded">Deletar</button>
                             </td>
                         </tr>
                         {% endfor %}

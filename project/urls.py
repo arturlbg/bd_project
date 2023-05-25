@@ -26,9 +26,12 @@ urlpatterns = [
     path('funcionario/', funcionario, name="funcionario"),
     path('funcionario/novo/', novo_funcionario, name="novo_funcionario"),
     path('funcionario/edit/<int:id>', edit_funcionario, name='edit_funcionario'),
+    path('funcionario/delete/<int:id>', delete_funcionario, name='delete_funcionario'),
+    path('funcionario/search/<str:nome>', search_funcionario, name='search_funcionario'),
     path('veiculo/', veiculo, name="veiculo"),
     path('veiculo/novo/', novo_veiculo, name="novo_veiculo"),
     path('veiculo/edit/<int:id>', edit_veiculo, name='edit_veiculo'),
     path('veiculo/delete/<int:id>', delete_veiculo, name='delete_veiculo'),
+    path('veiculo/search/<str:modelo>', search_veiculo, name='search_veiculo'),
     path('servico/novo', novo_servico, name="novo_servico"),
 ]
