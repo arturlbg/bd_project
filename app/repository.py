@@ -48,6 +48,16 @@ class VeiculoRepository:
             cursor.execute(query)
             result = cursor.fetchone()
         return result
+    
+    def findByModelo(self, modelo):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.veiculo WHERE LOWER(modelo) = LOWER('{}')".format(modelo)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+        return result
+    
 
 class ClienteRepository:
     def findAll(self):
@@ -75,6 +85,15 @@ class ClienteRepository:
             values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["nome"], data["endereco"], data["telefone"], data["email"], data["ehflamengo"], data["ehotaku"], data["ehsousa"])
             query = "INSERT INTO public.cliente (nome, endereco, telefone, email, ehflamengo, ehotaku, ehsousa) VALUES (" + values + ")" 
             cursor.execute(query)
+    
+    def findByNome(self, nome):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.cliente WHERE LOWER(nome) LIKE LOWER('%{}%')".format(nome)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+        return result
     
     def update(self, modelo):
         with connection.cursor() as cursor:
@@ -120,6 +139,11 @@ class FuncionarioRepository:
             result = cursor.fetchone()
         return result
     
+    def delete(self, id):
+        with connection.cursor() as cursor:
+            query = "DELETE FROM public.funcionario WHERE idFuncionario = %s"
+            cursor.execute(query, [id])
+    
     def create(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
@@ -147,6 +171,15 @@ class FuncionarioRepository:
             query = query = "SELECT SUM(salario) AS salario_total FROM public.funcionario;"
             cursor.execute(query)
             result = cursor.fetchone()
+        return result
+
+    def findByNome(self, nome):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.funcionario WHERE LOWER(nome) LIKE LOWER('%{}%')".format(nome)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
         return result
 
     
@@ -206,3 +239,10 @@ class VendaRepository:
             query = "DELETE FROM public.venda WHERE idVenda = %s"
             print(query)
             cursor.execute(query, [id])
+
+    def getTotalValorVenda(self):
+        with connection.cursor() as cursor:
+            query = query = "SELECT SUM(valorvenda) AS venda_total FROM public.venda;"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result

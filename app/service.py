@@ -39,6 +39,26 @@ class VeiculoService:
     def delete(self, id):
         repository = VeiculoRepository()
         repository.delete(id)
+
+    def findByModelo(self, modelo):
+        repository = VeiculoRepository()
+        obj = repository.findByModelo(modelo)
+        obj_modified = []
+
+        for item in obj:
+            item_dict = {
+                'idveiculo': item[0],
+                'valor': float(item[1]),
+                'codmarca': item[2],
+                'numportas': item[3],
+                'ano': item[4],
+                'modelo': item[5],
+                'cor': item[6]
+            }
+            obj_modified.append(item_dict)
+
+        json_data = json.dumps(obj_modified)
+        return json_data
     
     def getModeloFrequente(self):
         repository = VeiculoRepository()
@@ -82,6 +102,14 @@ class ClienteService:
         repository = ClienteRepository()
         return repository.getTotalSousa()
 
+    def findByNome(self, nome):
+        repository = ClienteRepository()
+        obj = repository.findByNome(nome)
+        json = convert_to_json.convert_to_json(['idcliente', 'nome', 'endereco',
+                                                'telefone', 'email', 'ehflamengo',
+                                                'ehotaku', 'ehsousa'], obj)
+        return json
+
 class FuncionarioService:
     def findAll(self):
         repository = FuncionarioRepository()
@@ -117,14 +145,34 @@ class FuncionarioService:
         repository = FuncionarioRepository()
         repository.update(modelo)
 
+    def delete(self, id):
+        repository = FuncionarioRepository()
+        repository.delete(id)
+    
     def getMaiorSalario(self):
         repository = FuncionarioRepository()
         return repository.getMaiorSalario()
 
-    
     def getTotalSalario(self):
         repository = FuncionarioRepository()
         return repository.getTotalSalario()
+
+    def findByNome(self, nome):
+        repository = FuncionarioRepository()
+        obj = repository.findByNome(nome)
+
+        obj_modified = []
+        for item in obj:
+            item_dict = {
+                'idfuncionario': item[0],
+                'nome': item[1],
+                'codcargo': item[2],
+                'salario': float(item[3]),
+                'dataadmissao': item[4].strftime('%Y-%m-%d')
+            }
+            obj_modified.append(item_dict)
+        json_data = json.dumps(obj_modified)
+        return json_data
     
 class ServicoService:
     def findById(self, id):
@@ -170,3 +218,7 @@ class VendaService:
     def delete(self, id):
         repository = VendaRepository()
         repository.delete(id)
+
+    def getTotalValorVenda(self):
+        repository = VendaRepository()
+        return repository.getTotalValorVenda()

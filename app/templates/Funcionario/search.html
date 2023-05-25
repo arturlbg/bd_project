@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Listagem de funcionários por nome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+<body>
+    {% csrf_token %}
+
+    <div class="container">
+        <h1 class="text-center">Lista de funcionários</h1>
+        <hr>
+
+        <div class="table-responsive">
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Código do cargo</th>
+                        <th>Salário</th>
+                        <th>Data de admissão</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in obj %}
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3106/3106921.png" alt="" style="width: 45px; height: 45px" class="rounded-circle">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{x.nome}}</p>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>{{x.codcargo}}</td>
+                        <td>{{x.salario}}</td>
+                        <td>{{x.dataadmissao}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </div>
+    </div>
+</body>
+</html>

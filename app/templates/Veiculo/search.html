@@ -4,53 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Concessionária CI</title>
+    <title>Listagem de veículos por nome</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
 <body>
     {% csrf_token %}
-    <script>
-        function deleteById(id) {
-            var csrftoken = '{{ csrf_token }}';
-            fetch(`/veiculo/delete/${id}`, {
-                method: "DELETE",
-                headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-                },
-            })
-            .then(response => {
-                if (response.ok) {
-                console.log("Deletado com sucesso!");
-                } else {
-                console.log("Erro ao deletar");
-                }
-            })
-            .catch(error => {
-                console.log("Erro:", error);
-            });
-        };
 
-        function pesquisarVeiculo() {
-            var consulta = document.getElementById('consulta').value;
-            if (consulta.trim() !== '') {
-                var url = '/veiculo/search/' + encodeURIComponent(consulta).toString();
-                window.location.href = url;
-            }
-        }
-
-      </script>
     <div class="container">
-        <h1 class="text-center">Lista de Veículos</h1>
-        <hr>
-        
-        <div class="mb-3">
-            <label for="consulta" class="form-label"><b>Pesquise veículos por nome:</b></label>
-            <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o modelo" required minlength="3" maxlength="20">
-            <button onclick="pesquisarVeiculo()" type="button" class="btn-link btn-sm btn-rounded">Pesquisar</button>
-        </div>
-        <p>Modelo com maior quantidade em estoque: {{modeloFrequente.0}}</p>
-        <p>Valor total de veículos: {{valorTotal.0}}</p>
+        <h1 class="text-center">Lista de Veículos - Filtro</h1>
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
@@ -61,7 +22,6 @@
                         <th>Ano</th>
                         <th>Cor</th>
                         <th>Valor</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,10 +40,6 @@
                         <td>{{x.ano}}</td>
                         <td>{{x.cor}}</td>
                         <td>{{x.valor}}</td>
-                        <td>
-                            <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
-                            <button onclick="deleteById('{{x.idveiculo}}')" type="button" class="btn-link btn-sm btn-rounded">Deletar</button>
-                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

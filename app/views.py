@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .service import *
 from .forms import *
-from .models import Veiculo
 import json
 
+
+########################################################################VEICULO########################################################################
 def veiculo(request):
     service = VeiculoService()
     obj = service.findAll()
@@ -46,6 +47,16 @@ def delete_veiculo(request, id):
     }
     return render(request, 'Veiculo/index.html', context)
 
+def search_veiculo(request, modelo):
+    service = VeiculoService()
+    obj = service.findByModelo(modelo)
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Veiculo/search.html', context)
+
 def novo_veiculo(request):
     if request.method == 'POST':
         form = VeiculoForm(request.POST)
@@ -54,6 +65,8 @@ def novo_veiculo(request):
             service.create(form)
 
     return render(request, 'Veiculo/new.html')
+
+########################################################################CLIENTE########################################################################
 
 def cliente(request):
     service = ClienteService()
@@ -95,6 +108,18 @@ def edit_cliente(request, id):
     }
     return render(request, 'Cliente/edit.html', context)
 
+def search_cliente(request, nome):
+    service = ClienteService()
+    obj = service.findByNome(nome)
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Cliente/search.html', context)
+
+########################################################################FUNCIONARIO########################################################################
+
 def funcionario(request):
     service = FuncionarioService()
     obj = service.findAll()
@@ -133,6 +158,27 @@ def novo_funcionario(request):
     
     return render(request, 'Funcionario/new.html')
 
+def delete_funcionario(request, id):
+    service = FuncionarioService()
+    if request.method == 'DELETE':
+        service.delete(id)
+    
+    obj = service.findAll()
+    obj = json.loads(obj)
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Funcionario/index.html', context)
+
+def search_funcionario(request, nome):
+    service = FuncionarioService()
+    obj = service.findByNome(nome)
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Funcionario/search.html', context)
 
 def novo_servico(request):
     if request.method == 'POST':
@@ -148,13 +194,17 @@ def novo_servico(request):
     }
     return render(request, 'Servico/new.html', context)
 
+########################################################################VENDA########################################################################
+
 def venda(request):
     service = VendaService()
     obj = service.findAll()
     obj = json.loads(obj)
 
+    vendaTotal = service.getTotalValorVenda()
     context = {
         "obj": obj,
+        "vendaTotal": vendaTotal,
     }
     return render(request, "Venda/index.html", context)
 
