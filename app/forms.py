@@ -21,3 +21,8 @@ class ServicoForm(forms.ModelForm):
         model = Servico
         fields = ['idveiculo', 'codservico', 'valorservico', 'dataservico']
 
+class VendaForm(forms.ModelForm):
+    class Meta:
+        model = Venda
+        fields = ['idveiculo', 'idcliente', 'datavenda', 'valorvenda']
+

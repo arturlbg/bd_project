@@ -19,26 +19,28 @@
 <body>
   <div class="container">
     <div class="form-container">
-      <h1>Novo Servico</h1>
+      <h1>Nova Venda</h1>
       <form class="needs-validation" method="post" novalidate>
         {% csrf_token %}
         <label for="idveiculo" class="form-label">Veiculo</label>
         <select name="idveiculo"  class="form-control" id="idveiculo" placeholder="Selecione o veículo">
           {% for x in veiculo %}
-            <option value="{{x.idcliente}}" {% if x.idcliente == valorPadrao %}selected{% endif %}>{{x.nome}}</option>
+            <option value={{x.idveiculo}}>{{x.modelo}}</option>
+          {% endfor %}
+        </select>
+        <label for="idcliente" class="form-label">Cliente</label>
+        <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o Cliente">
+          {% for x in cliente %}
+            <option value={{x.idcliente}}>{{x.nome}}</option>
           {% endfor %}
         </select>
         <div class="mb-3">
-            <label for="codservico" class="form-label">Código do Serviço</label>
-            <input name="codservico" type="text" class="form-control" id="codservico" placeholder="Insira o Código" required>
+          <label for="datavenda" class="form-label">Data da Venda</label>
+          <input name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a Data" required></input>
         </div>
         <div class="mb-3">
-          <label for="dataservico" class="form-label">Data do Serviço</label>
-          <input name="dataservico" type="date" class="form-control" id="dataservico" placeholder="Insira a Data" required></input>
-        </div>
-        <div class="mb-3">
-          <label for="valorservico" class="form-label">Valor do Serviço</label>
-          <input name="valorservico" type="text" class="form-control" id="valorservico" placeholder="Insira o Valor" required>
+          <label for="valorvenda" class="form-label">Valor da Venda</label>
+          <input name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o Valor" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

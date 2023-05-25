@@ -35,6 +35,20 @@ class VeiculoRepository:
             query = "DELETE FROM public.veiculo WHERE idVeiculo = %s"
             cursor.execute(query, [id])
 
+    def getModeloFrequente(self):
+        with connection.cursor() as cursor:
+            query = "SELECT modelo, COUNT(*) AS quantidade FROM public.veiculo GROUP BY modelo ORDER BY quantidade DESC LIMIT 1;"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
+    
+    def getValorTotal(self):
+        with connection.cursor() as cursor:
+            query = "SELECT SUM(valor) AS soma_total FROM public.veiculo;"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
+
 class ClienteRepository:
     def findAll(self):
         with connection.cursor() as cursor:
@@ -69,6 +83,27 @@ class ClienteRepository:
                                                                                                                     data["email"], data["ehflamengo"], data["ehotaku"], data["ehsousa"])
             query = "UPDATE public.cliente SET {} WHERE idCliente = {}".format(values, data["idcliente"]) 
             cursor.execute(query)
+
+    def getTotalFlamenguistas(self):
+        with connection.cursor() as cursor:
+            query = "SELECT COUNT(*) AS total_flamengo FROM public.cliente WHERE ehflamengo = 'true';"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
+
+    def getTotalOtakus(self):
+        with connection.cursor() as cursor:
+            query = "SELECT COUNT(*) AS total_otaku FROM public.cliente WHERE ehotaku = 'true';"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
+    
+    def getTotalSousa(self):
+        with connection.cursor() as cursor:
+            query = "SELECT COUNT(*) AS total_sousa FROM public.cliente WHERE ehsousa = 'true';"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
     
 class FuncionarioRepository:
     def findAll(self):
@@ -99,6 +134,20 @@ class FuncionarioRepository:
                                                                                                                     data["dataadmissao"])
             query = "UPDATE public.funcionario SET {} WHERE idFuncionario = {}".format(values, data["idfuncionario"]) 
             cursor.execute(query)
+    
+    def getMaiorSalario(self):
+        with connection.cursor() as cursor:
+            query = "SELECT MAX(salario) AS maior_salario FROM public.funcionario;"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
+    
+    def getTotalSalario(self):
+        with connection.cursor() as cursor:
+            query = query = "SELECT SUM(salario) AS salario_total FROM public.funcionario;"
+            cursor.execute(query)
+            result = cursor.fetchone()
+        return result
 
     
 class ServicoRepository:
@@ -122,3 +171,38 @@ class ServicoRepository:
             values = "'{}', '{}', '{}', '{}'".format(data["idveiculo"].idveiculo, data["codservico"], data["valorservico"], data["dataservico"])
             query = "INSERT INTO public.servico (idveiculo, codservico, valorservico, dataservico) VALUES (" + values + ")" 
             cursor.execute(query)
+
+class VendaRepository:
+    def findAll(self):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.venda"
+            cursor.execute(query)
+            results = cursor.fetchall()
+        return results
+
+    def findById(self, id):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.venda WHERE idVenda = %s"
+            cursor.execute(query, [id])
+            result = cursor.fetchone()
+        return result
+    
+    def create(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "'{}', '{}', '{}', {}".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["datavenda"], data["valorvenda"])
+            query = "INSERT INTO public.venda (idveiculo, idcliente, datavenda, valorvenda) VALUES (" + values + ")" 
+            cursor.execute(query)
+
+    def update(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "idveiculo = '{}', idcliente = '{}', datavenda = '{}', valorvenda = '{}'".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["datavenda"], data["valorvenda"])
+            query = "UPDATE public.venda SET {} WHERE idVenda = {}".format(values, data["idvenda"]) 
+            print(query)
+            cursor.execute(query)
+    def delete(self, id):
+        with connection.cursor() as cursor:
+            query = "DELETE FROM public.venda WHERE idVenda = %s"
+            print(query)
+            cursor.execute(query, [id])

@@ -40,6 +40,14 @@ class VeiculoService:
         repository = VeiculoRepository()
         repository.delete(id)
     
+    def getModeloFrequente(self):
+        repository = VeiculoRepository()
+        return repository.getModeloFrequente()
+    
+    def getValorTotal(self):
+        repository = VeiculoRepository()
+        return repository.getValorTotal()
+    
 class ClienteService:
     def findAll(self):
         repository = ClienteRepository()
@@ -61,6 +69,18 @@ class ClienteService:
     def update(self, modelo):
         repository = ClienteRepository()
         repository.update(modelo)
+    
+    def getTotalFlamenguistas(self):
+        repository = ClienteRepository()
+        return repository.getTotalFlamenguistas()
+    
+    def getTotalOtakus(self):
+        repository = ClienteRepository()
+        return repository.getTotalOtakus()
+    
+    def getTotalSousa(self):
+        repository = ClienteRepository()
+        return repository.getTotalSousa()
 
 class FuncionarioService:
     def findAll(self):
@@ -96,6 +116,15 @@ class FuncionarioService:
     def update(self, modelo):
         repository = FuncionarioRepository()
         repository.update(modelo)
+
+    def getMaiorSalario(self):
+        repository = FuncionarioRepository()
+        return repository.getMaiorSalario()
+
+    
+    def getTotalSalario(self):
+        repository = FuncionarioRepository()
+        return repository.getTotalSalario()
     
 class ServicoService:
     def findById(self, id):
@@ -106,3 +135,38 @@ class ServicoService:
     def create(self, modelo):
         repository = ServicoRepository()
         repository.create(modelo)
+
+class VendaService:
+    def findAll(self):
+        repository = VendaRepository()
+        obj = repository.findAll()
+        obj_modified = []
+        for item in obj:
+            item_dict = {
+                'idvenda': item[0],
+                'idveiculo': item[1],
+                'idcliente': item[2],
+                'datavenda': item[3].strftime('%Y-%m-%d'),
+                'valorvenda': float(item[4]),
+            }
+            obj_modified.append(item_dict)
+
+        json_data = json.dumps(obj_modified)
+        return json_data
+
+    def findById(self, id):
+        repository = VendaRepository()
+        obj = repository.findById(id)
+        return obj
+    
+    def create(self, modelo):
+        repository = VendaRepository()
+        repository.create(modelo)
+    
+    def update(self, modelo):
+        repository = VendaRepository()
+        repository.update(modelo)
+
+    def delete(self, id):
+        repository = VendaRepository()
+        repository.delete(id)

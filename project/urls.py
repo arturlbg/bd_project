@@ -30,5 +30,9 @@ urlpatterns = [
     path('veiculo/novo/', novo_veiculo, name="novo_veiculo"),
     path('veiculo/edit/<int:id>', edit_veiculo, name='edit_veiculo'),
     path('veiculo/delete/<int:id>', delete_veiculo, name='delete_veiculo'),
+    path('venda/', venda, name="venda"),
+    path('venda/novo/', novo_venda, name="novo_venda"),
+    path('venda/edit/<int:id>', edit_venda, name='edit_venda'),
+    path('venda/delete/<int:id>', delete_venda, name='delete_venda'),
     path('servico/novo', novo_servico, name="novo_servico"),
 ]
