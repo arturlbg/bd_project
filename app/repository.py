@@ -72,6 +72,15 @@ class ClienteRepository:
             query = "INSERT INTO public.cliente (nome, endereco, telefone, email, ehflamengo, ehotaku, ehsousa) VALUES (" + values + ")" 
             cursor.execute(query)
     
+    def findByNome(self, nome):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.cliente WHERE LOWER(nome) LIKE LOWER('%{}%')".format(nome)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+        return result
+    
     def update(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data

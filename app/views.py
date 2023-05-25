@@ -92,6 +92,16 @@ def edit_cliente(request, id):
     }
     return render(request, 'Cliente/edit.html', context)
 
+def search_cliente(request, nome):
+    service = ClienteService()
+    obj = service.findByNome(nome)
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, 'Cliente/search.html', context)
+
 def funcionario(request):
     service = FuncionarioService()
     obj = service.findAll()

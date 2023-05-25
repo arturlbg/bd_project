@@ -82,6 +82,14 @@ class ClienteService:
         repository = ClienteRepository()
         repository.update(modelo)
 
+    def findByNome(self, nome):
+        repository = ClienteRepository()
+        obj = repository.findByNome(nome)
+        json = convert_to_json.convert_to_json(['idcliente', 'nome', 'endereco',
+                                                'telefone', 'email', 'ehflamengo',
+                                                'ehotaku', 'ehsousa'], obj)
+        return json
+
 class FuncionarioService:
     def findAll(self):
         repository = FuncionarioRepository()
@@ -124,8 +132,7 @@ class FuncionarioService:
     def findByNome(self, nome):
         repository = FuncionarioRepository()
         obj = repository.findByNome(nome)
-        print(obj)
-        print('caiu aqui2')
+
         obj_modified = []
         for item in obj:
             item_dict = {
