@@ -21,10 +21,13 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cliente/', cliente, name="cliente"),
+    path('cliente/novo/', novo_cliente, name="novo_cliente"),
     path('funcionario/', funcionario, name="funcionario"),
     path('funcionario/novo/', novo_funcionario, name="novo_funcionario"),
+    path('funcionario/edit/<int:id>', edit_funcionario, name='edit_funcionario'),
     path('veiculo/', veiculo, name="veiculo"),
     path('veiculo/novo/', novo_veiculo, name="novo_veiculo"),
-    path('veiculo/edit/<int:id>', get_veiculo, name='get_veiculo'),
+    path('veiculo/edit/<int:id>', edit_veiculo, name='edit_veiculo'),
+    path('veiculo/delete/<int:id>', delete_veiculo, name='delete_veiculo'),
     path('servico/novo', novo_servico, name="novo_servico"),
 ]

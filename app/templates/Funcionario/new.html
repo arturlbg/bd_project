@@ -24,20 +24,19 @@
             <form class="needs-validation" method="post" novalidate>
                 {% csrf_token %}
 
-                <!---- nome, codcargo, salario, dataadmissao -->
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome completo</label>
-                    <input name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required>
+                    <input name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
                 </div>
 
                 <div class="mb-3">
                     <label for="codcargo" class="form-label">Código do cargo</label>
-                    <input name="codcargo" type="text" class="form-control" id="codcargo" placeholder="Insira o código do cargo" required>
+                    <input name="codcargo" type="text" class="form-control" id="codcargo" placeholder="Insira o código do cargo" required minlength="1" maxlength="1">
                 </div>
 
                 <div class="mb-3">
                     <label for="salario" class="form-label">Salário</label>
-                    <input name="salario" type="number" class="form-control" id="salario" placeholder="Insira o salário" required>
+                    <input name="salario" type="number" class="form-control" id="salario" placeholder="Insira o salário" required minlength="4" maxlength="6">
                 </div>
 
                 <div class="mb-3">

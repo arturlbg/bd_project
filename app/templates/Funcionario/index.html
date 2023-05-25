@@ -51,7 +51,7 @@
                             <td>{{x.salario}}</td>
                             <td>{{x.dataadmissao}}</td>
                             <td>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded">Editar</button>
+                                <button onclick="location.href='/funcionario/edit/{{x.idfuncionario}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
                             </td>
                         </tr>
                         {% endfor %}

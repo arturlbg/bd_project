@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    
+    <title>Atualizar dados do funcionário</title>
+
+    <style>
+        .form-container {
+          max-width: 500px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+      </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="form-container">
+            <h1>Editar funcionário</h1>
+            <form class="needs-validation" method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome completo</label>
+                    <input value={{obj.1}} name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
+                </div>
+
+                <div class="mb-3">
+                    <label for="codcargo" class="form-label">Código do cargo</label>
+                    <input value={{obj.2}}  name="codcargo" type="text" class="form-control" id="codcargo" placeholder="Insira o código do cargo" required minlength="1" maxlength="1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="salario" class="form-label">Salário</label>
+                    <input value={{obj.3}} name="salario" type="number" class="form-control" id="salario" placeholder="Insira o salário" required minlength="4" maxlength="6">
+                </div>
+
+                <div class="mb-3">
+                    <label for="dataadmissao" class="form-label">Data de admissão</label>
+                    <input value={{obj.4}} name="dataadmissao" type="date" class="form-control" id="dataadmissao" placeholder="Insira a data de admissão" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Atualizar dados</button>
+            
+            </form>
+
+
+
+
+
+
+
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+
+    </div>
+
+</body>
+</html>

@@ -31,6 +31,11 @@ class VeiculoRepository:
             query = "UPDATE public.veiculo SET {} WHERE idVeiculo = {}".format(values, data["idveiculo"]) 
             cursor.execute(query)
 
+    def delete(self, id):
+        with connection.cursor() as cursor:
+            query = "DELETE FROM public.veiculo WHERE idVeiculo = %s"
+            cursor.execute(query, [id])
+
 class ClienteRepository:
     def findAll(self):
         with connection.cursor() as cursor:
@@ -45,6 +50,19 @@ class ClienteRepository:
             cursor.execute(query, [id])
             result = cursor.fetchone()
         return result
+    
+    def create(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+    
+            data["ehflamengo"] = 'true' if data["ehflamengo"] else 'false'
+            data["ehotaku"] = 'true' if data["ehotaku"] else 'false'
+            data["ehsousa"] = 'true' if data["ehsousa"] else 'false'
+            
+            print(data)
+            values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["nome"], data["endereco"], data["telefone"], data["email"], data["ehflamengo"], data["ehotaku"], data["ehsousa"])
+            query = "INSERT INTO public.cliente (nome, endereco, telefone, email, ehflamengo, ehotaku, ehsousa) VALUES (" + values + ")" 
+            cursor.execute(query)
     
 class FuncionarioRepository:
     def findAll(self):
@@ -66,6 +84,15 @@ class FuncionarioRepository:
             data = modelo.cleaned_data
             values = "'{}', '{}', '{}', '{}'".format(data["nome"], data["codcargo"], data["salario"], data["dataadmissao"])
             query = "INSERT INTO public.funcionario (nome, codcargo, salario, dataadmissao) VALUES (" + values + ")" 
+            cursor.execute(query)
+
+    def update(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            print(data)
+            values = "nome = '{}', codcargo = '{}', salario = '{}', dataadmissao = '{}'".format(data["nome"], data["codcargo"], data["salario"],
+                                                                                                                    data["dataadmissao"])
+            query = "UPDATE public.funcionario SET {} WHERE idFuncionario = {}".format(values, data["idfuncionario"]) 
             cursor.execute(query)
 
     
