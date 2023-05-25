@@ -224,7 +224,7 @@ class VendaRepository:
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
             values = "'{}', '{}', '{}', {}".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["datavenda"], data["valorvenda"])
-            query = "INSERT INTO public.venda (idveiculo, idcliente, datavenda, valorvenda) VALUES (" + values + ")" 
+            query = "INSERT INTO public.venda (idveiculo_id, idcliente_id, datavenda, valorvenda) VALUES (" + values + ")" 
             cursor.execute(query)
 
     def update(self, modelo):
@@ -232,12 +232,10 @@ class VendaRepository:
             data = modelo.cleaned_data
             values = "idveiculo = '{}', idcliente = '{}', datavenda = '{}', valorvenda = '{}'".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["datavenda"], data["valorvenda"])
             query = "UPDATE public.venda SET {} WHERE idVenda = {}".format(values, data["idvenda"]) 
-            print(query)
             cursor.execute(query)
     def delete(self, id):
         with connection.cursor() as cursor:
             query = "DELETE FROM public.venda WHERE idVenda = %s"
-            print(query)
             cursor.execute(query, [id])
 
     def getTotalValorVenda(self):

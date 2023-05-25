@@ -189,13 +189,14 @@ class VendaService:
         repository = VendaRepository()
         obj = repository.findAll()
         obj_modified = []
+
         for item in obj:
             item_dict = {
                 'idvenda': item[0],
-                'idveiculo': item[1],
-                'idcliente': item[2],
-                'datavenda': item[3].strftime('%Y-%m-%d'),
-                'valorvenda': float(item[4]),
+                'datavenda': item[1].strftime('%Y-%m-%d'),
+                'valorvenda': float(item[2]),
+                'idcliente': item[3],
+                'idveiculo': item[4],
             }
             obj_modified.append(item_dict)
 
