@@ -180,20 +180,6 @@ def search_funcionario(request, nome):
     }
     return render(request, 'Funcionario/search.html', context)
 
-def novo_servico(request):
-    if request.method == 'POST':
-        form = ServicoForm(request.POST)
-        if form.is_valid():
-            service = ServicoService()
-            service.create(form)
-
-    veiculo_service = VeiculoService()
-    veiculo = json.loads(veiculo_service.findAll())
-    context = {
-        "veiculo": veiculo
-    }
-    return render(request, 'Servico/new.html', context)
-
 ########################################################################VENDA########################################################################
 
 def venda(request):
