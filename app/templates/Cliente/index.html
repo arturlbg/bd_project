@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
     <title>Lista de clientes da Concessionária</title>
 
     <!-- Bootstrap -->
@@ -36,16 +37,20 @@
 
   </script>
 
-<body>
+<body style="background-color: #e2e2e2;">
     <div class="container">
-        <h1 class="text-center">Clientes</h1>
+        <h1 class="text-center">Lista de clientes</h1>
         <hr>
         
         <div class="mb-3">
             <label for="consulta" class="form-label"><b>Pesquise clientes por nome:</b></label>
-            <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o nome do cliente" required minlength="3" maxlength="20">
-            <button onclick="pesquisarCliente()" type="button" class="btn-link btn-sm btn-rounded">Pesquisar</button>
+            
+            <div class="input-group">
+                <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o nome do cliente" required minlength="3" maxlength="20">
+                <button onclick="pesquisarCliente()" type="button" class="btn btn-primary">Pesquisar</button>
+            </div>
         </div>
+
         <p>Quantidade de Flamenguistas: {{totalFlamenguistas.0}}</p>
         <p>Quantidade de Otakus: {{totalOtakus.0}}</p>
         <p>Número de moradores de Sousa: {{totalSousa.0}}</p>
@@ -81,7 +86,7 @@
                         <td>{{x.ehotaku}}</td>
                         <td>{{x.ehsousa}}</td>
                         <td>
-                            <button onclick="location.href='/cliente/edit/{{x.idcliente}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
+                            <button onclick="location.href='/cliente/edit/{{x.idcliente}}'" type="button" class="btn btn-info">Editar</button>
                         </td>
                     </tr>
                     {% endfor %}
