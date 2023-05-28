@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
   <title>Registro de funcionários</title>
   <style>
     .form-container {
@@ -17,7 +18,7 @@
   </style>
 </head>
 
-<body>
+<body style="background-color: #e2e2e2;">
     <div class="container">
         <div class="form-container">
             <h1>Cadastro de funcionário</h1>
@@ -25,26 +26,26 @@
                 {% csrf_token %}
 
                 <div class="mb-3">
-                    <label for="nome" class="form-label">Nome completo</label>
+                    <label for="nome" class="form-label"><b>Nome completo</b></label>
                     <input name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
                 </div>
 
                 <div class="mb-3">
-                    <label for="codcargo" class="form-label">Código do cargo</label>
+                    <label for="codcargo" class="form-label"><b>Código do cargo</b></label>
                     <input name="codcargo" type="text" class="form-control" id="codcargo" placeholder="Insira o código do cargo" required minlength="1" maxlength="1">
                 </div>
 
                 <div class="mb-3">
-                    <label for="salario" class="form-label">Salário</label>
+                    <label for="salario" class="form-label"><b>Salário</b></label>
                     <input name="salario" type="number" class="form-control" id="salario" placeholder="Insira o salário" required minlength="4" maxlength="6">
                 </div>
 
                 <div class="mb-3">
-                    <label for="dataadmissao" class="form-label">Data de admissão</label>
+                    <label for="dataadmissao" class="form-label"><b>Data de admissão</b></label>
                     <input name="dataadmissao" type="date" class="form-control" id="dataadmissao" placeholder="Insira a data de admissão" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-success">Enviar</button>
             </form>
         </div>
     </div>

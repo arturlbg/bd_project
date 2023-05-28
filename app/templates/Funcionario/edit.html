@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    
+    <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
     <title>Atualizar dados do funcionário</title>
 
     <style>
@@ -19,7 +19,7 @@
         }
       </style>
 </head>
-<body>
+<body style="background-color: #e2e2e2;">
     
     <div class="container">
         <div class="form-container">
@@ -29,7 +29,7 @@
 
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome completo</label>
-                    <input value={{obj.1}} name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
+                    <input value="{{obj.1}}" name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
                 </div>
 
                 <div class="mb-3">
@@ -47,7 +47,7 @@
                     <input value={{obj.4}} name="dataadmissao" type="date" class="form-control" id="dataadmissao" placeholder="Insira a data de admissão" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Atualizar dados</button>
+                <button type="submit" class="btn btn-success">Atualizar</button>
             
             </form>
 

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
         <title>Funcionários da Concessionária</title>
 
         <!-- Bootstrap -->
@@ -49,15 +50,18 @@
 
       </script>
 
-    <body>
+    <body style="background-color: #e2e2e2;">
         
         <div class="container">
             <h1 class="text-center">Lista de funcionários</h1>
             <hr>
+
             <div class="mb-3">
                 <label for="consulta" class="form-label"><b>Pesquise funcionários por nome:</b></label>
-                <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o modelo" required minlength="3" maxlength="20">
-                <button onclick="pesquisarFuncionario()" type="button" class="btn-link btn-sm btn-rounded">Pesquisar</button>
+                <div class="input-group">
+                    <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o nome do funcionário" required minlength="3" maxlength="20">
+                    <button onclick="pesquisarFuncionario()" type="button" class="btn btn-primary">Pesquisar</button>
+                </div>
             </div>
             
             <p>Salario mais alto: {{maiorSalario.0}}</p>
@@ -91,8 +95,8 @@
                             <td>{{x.salario}}</td>
                             <td>{{x.dataadmissao}}</td>
                             <td>
-                                <button onclick="location.href='/funcionario/edit/{{x.idfuncionario}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
-                                <button onclick="deleteById('{{x.idfuncionario}}')" type="button" class="btn-link btn-sm btn-rounded">Deletar</button>
+                                <button onclick="location.href='/funcionario/edit/{{x.idfuncionario}}'" type="button" class="btn btn-info">Editar</button>
+                                <button onclick="deleteById('{{x.idfuncionario}}')" type="button" class="btn btn-danger">Deletar</button>
                             </td>
                         </tr>
                         {% endfor %}
