@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-  <title>Formulário</title>
+  <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
+  <title>Registro de veículos</title>
   <style>
     .form-container {
       max-width: 500px;
@@ -16,37 +17,37 @@
     }
   </style>
 </head>
-<body>
+<body style="background-color: #e2e2e2;">
   <div class="container">
     <div class="form-container">
-      <h1>Novo Veículo</h1>
+      <h1>Cadastro de veículo</h1>
       <form class="needs-validation" method="post" novalidate>
         {% csrf_token %}
         <div class="mb-3">
-          <label for="modelo" class="form-label">Modelo</label>
+          <label for="modelo" class="form-label"><b>Modelo</b></label>
           <input name="modelo" type="text" class="form-control" id="modelo" placeholder="Insira o modelo" required minlength="3" maxlength="20">
         </div>
         <div class="mb-3">
-            <label for="codmarca" class="form-label">Código da Marca</label>
+            <label for="codmarca" class="form-label"><b>Código da marca</b></label>
             <input name="codmarca" type="text" class="form-control" id="codmarca" placeholder="Insira o código da marca" requiredmaxlength="2">
           </div>
         <div class="mb-3">
-          <label for="numportas" class="form-label">Número de Portas</label>
+          <label for="numportas" class="form-label"><b>Número de portas</b></label>
           <input name="numportas" type="text" class="form-control" id="numportas" placeholder="Insira o número de portas" required minlength="1" maxlength="1"></input>
         </div>
         <div class="mb-3">
-          <label for="ano" class="form-label">Ano</label>
+          <label for="ano" class="form-label"><b>Ano</b></label>
           <input name="ano" type="text" class="form-control" id="ano" placeholder="Insira o ano" required minlength="4" maxlength="4">
         </div>
         <div class="mb-3">
-          <label for="cor" class="form-label">Cor</label>
+          <label for="cor" class="form-label"><b>Cor</b></label>
           <input name="cor" type="text" class="form-control" id="cor" placeholder="Insira a cor" required minlength="3" maxlength="15">
         </div>
         <div class="mb-3">
-          <label for="valor" class="form-label">Valor</label>
+          <label for="valor" class="form-label"><b>Valor</b></label>
           <input name="valor" type="number" class="form-control" id="valor" placeholder="Insira o valor" minlength="5" maxlength="10"required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Enviar</button>
       </form>
     </div>
   </div>

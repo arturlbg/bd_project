@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Concessionária CI</title>
+    <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
+    <title>InforCar Mangabeira</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
-<body>
+<body style="background-color: #e2e2e2;">
     {% csrf_token %}
     <script>
         function deleteById(id) {
@@ -41,13 +42,15 @@
 
       </script>
     <div class="container">
-        <h1 class="text-center">Lista de Veículos</h1>
+        <h1 class="text-center">📜Lista de veículos 🚗🚙🚐</h1>
         <hr>
         
         <div class="mb-3">
             <label for="consulta" class="form-label"><b>Pesquise veículos por nome:</b></label>
-            <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o modelo" required minlength="3" maxlength="20">
-            <button onclick="pesquisarVeiculo()" type="button" class="btn-link btn-sm btn-rounded">Pesquisar</button>
+            <div class="input-group">
+                <input name="consulta" type="text" class="form-control" id="consulta" placeholder="Insira o modelo" required minlength="3" maxlength="20">
+                <button onclick="pesquisarVeiculo()" type="button" class="btn btn-primary">Pesquisar</button>
+            </div>
         </div>
         <p>Modelo com maior quantidade em estoque: {{modeloFrequente.0}}</p>
         <p>Valor total de veículos: {{valorTotal.0}}</p>
@@ -81,8 +84,8 @@
                         <td>{{x.cor}}</td>
                         <td>{{x.valor}}</td>
                         <td>
-                            <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
-                            <button onclick="deleteById('{{x.idveiculo}}')" type="button" class="btn-link btn-sm btn-rounded">Deletar</button>
+                            <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn btn-info">Editar</button>
+                            <button onclick="deleteById('{{x.idveiculo}}')" type="button" class="btn btn-danger">Deletar</button>
                         </td>
                     </tr>
                     {% endfor %}
