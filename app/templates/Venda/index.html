@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Concessionária CI</title>
+    <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
+    <title>Listagem de vendas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
-<body>
+<body style="background-color: #e2e2e2;">
     {% csrf_token %}
     <script>
         function deleteById(id) {
@@ -32,7 +33,7 @@
         };
       </script>
     <div class="container">
-        <h1 class="text-center">Lista de Vendas</h1>
+        <h1 class="text-center">Lista de vendas</h1>
         <hr>
         <p>Valor total de vendas: {{vendaTotal.0}}</p>
         <div class="table-responsive">
