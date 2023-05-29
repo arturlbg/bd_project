@@ -1,8 +1,14 @@
-delete from veiculo where idveiculo>=1;
-delete from cliente where idcliente>=1;
-delete from funcionario where idfuncionario>=1;
-delete from marca where codmarca >=1;
-delete from cargo where cogcargo >=1;
+DELETE FROM veiculo WHERE idveiculo>=1;
+DELETE FROM cliente WHERE idcliente>=1;
+DELETE FROM funcionario WHERE idfuncionario>=1;
+DELETE FROM marca WHERE codmarca >=1;
+DELETE FROM cargo WHERE codcargo >=1;
+
+SELECT * FROM veiculo;
+SELECT * FROM cliente;
+SELECT * FROM funcionario;
+SELECT * FROM marca;
+SELECT * FROM cargo;
 
 INSERT INTO marca (codmarca, nomemarca)
 VALUES
