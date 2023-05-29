@@ -64,15 +64,15 @@
                 </div>
             </div>
             
-            <p>Salario mais alto: {{maiorSalario.0}}</p>
-            <p>Folha Salarial: {{totalSalario.0}}</p>
+            <p>Salário mais alto: R$ {{maiorSalario.0}}</p>
+            <p>Folha salarial: R$ {{totalSalario.0}}</p>
 
             <div class="table-responsive">
                 <table class="table align-middle mb-0 bg-white">
                     <thead class="bg-light">
                         <tr>
                             <th>Nome</th>
-                            <th>Código do cargo</th>
+                            <th>Cargo</th>
                             <th>Salário</th>
                             <th>Data de admissão</th>
                             <th>Ações</th>
@@ -91,8 +91,8 @@
                                 </div>
                             </td>
 
-                            <td>{{x.codcargo}}</td>
-                            <td>{{x.salario}}</td>
+                            <td>{{x.nomecargo}}</td>
+                            <td>R$ {{x.salario}}</td>
                             <td>{{x.dataadmissao}}</td>
                             <td>
                                 <button onclick="location.href='/funcionario/edit/{{x.idfuncionario}}'" type="button" class="btn btn-info">Editar</button>
