@@ -12,7 +12,6 @@ class VeiculoService:
     def findAll(self):
         repository = VeiculoRepository()
         obj = repository.findAll()
-        print(obj)
         obj_modified = []
 
         for item in obj:
@@ -27,8 +26,6 @@ class VeiculoService:
                 'codmarca': item[7],
             }
             obj_modified.append(item_dict)
-
-        print(obj_modified)
 
         json_data = json.dumps(obj_modified)
         return json_data
@@ -184,16 +181,6 @@ class FuncionarioService:
             obj_modified.append(item_dict)
         json_data = json.dumps(obj_modified)
         return json_data
-    
-class ServicoService:
-    def findById(self, id):
-        repository = ServicoRepository()
-        obj = repository.findById(id)
-        return obj
-
-    def create(self, modelo):
-        repository = ServicoRepository()
-        repository.create(modelo)
 
 class VendaService:
     def findAll(self):

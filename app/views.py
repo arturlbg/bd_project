@@ -10,6 +10,10 @@ def veiculo(request):
     obj = service.findAll()
     obj = json.loads(obj)
 
+    for veiculo in obj:
+        marca = Marca.objects.get(codmarca=veiculo['codmarca'])
+        veiculo['nomemarca'] = marca.nomemarca
+
     modeloFrequente = service.getModeloFrequente()
     valorTotal = service.getValorTotal()
 
@@ -19,6 +23,7 @@ def veiculo(request):
         "valorTotal": valorTotal
     }
     return render(request, "Veiculo/index.html", context)
+
 
 def edit_veiculo(request, id):
     if request.method == 'POST':
@@ -127,6 +132,11 @@ def funcionario(request):
 
     maiorSalario = service.getMaiorSalario()
     totalSalario = service.getTotalSalario()
+
+    for funcionario in obj:
+        cargo = Cargo.objects.get(codcargo=funcionario['codcargo'])
+        funcionario['nomecargo'] = cargo.nomecargo
+
     context = {
         "obj": obj,
         "maiorSalario": maiorSalario,
