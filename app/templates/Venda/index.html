@@ -35,15 +35,20 @@
     <div class="container">
         <h1 class="text-center">Lista de vendas</h1>
         <hr>
-        <p>Valor total de vendas: {{vendaTotal.0}}</p>
+        {% if vendaTotal.0 %}
+            <p>Valor total de vendas: R$ {{ vendaTotal.0 }}</p>
+        {% else %}
+            <p>Valor total de vendas: R$ 0,00</p>
+        {% endif %}
+        
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
-                        <th>Veiculo ID</th>
+                        <th>Veículo ID</th>
                         <th>Cliente ID</th>
-                        <th>Data Venda</th>
-                        <th>Valor de Venda</th>
+                        <th>Data venda</th>
+                        <th>Valor de venda</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -60,7 +65,7 @@
                         </td>
                         <td>{{x.idcliente}}</td>
                         <td>{{x.datavenda}}</td>
-                        <td>{{x.valorvenda}}</td>
+                        <td>R$ {{x.valorvenda}}</td>
                         <td>
                             <button onclick="location.href='/venda/edit/{{x.idvenda}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
                             <button onclick="deleteById('{{x.idvenda}}')" type="button" class="btn-link btn-sm btn-rounded">Deletar</button>

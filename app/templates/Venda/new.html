@@ -20,33 +20,65 @@
 <body style="background-color: #e2e2e2;">
   <div class="container">
     <div class="form-container">
-      <h1>Nova Venda</h1>
-      <form class="needs-validation" method="post" novalidate>
+      <h1>Efetivar nova venda</h1>
+      <form id="form-venda" class="needs-validation" method="post" novalidate>
         {% csrf_token %}
-        <label for="idveiculo" class="form-label">Veiculo</label>
+        <label for="idveiculo" class="form-label"><b>Selecione o modelo</b></label>
         <select name="idveiculo"  class="form-control" id="idveiculo" placeholder="Selecione o veículo">
           {% for x in veiculo %}
             <option value={{x.idveiculo}}>{{x.modelo}}</option>
           {% endfor %}
         </select>
-        <label for="idcliente" class="form-label">Cliente</label>
-        <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o Cliente">
+        <label for="idcliente" class="form-label"><b>Selecione o cliente</b></label>
+        <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o cliente">
           {% for x in cliente %}
             <option value={{x.idcliente}}>{{x.nome}}</option>
           {% endfor %}
         </select>
         <div class="mb-3">
-          <label for="datavenda" class="form-label">Data da Venda</label>
-          <input name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a Data" required></input>
+          <label for="datavenda" class="form-label"><b>Data da venda</b></label>
+          <input name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a data" required></input>
         </div>
         <div class="mb-3">
-          <label for="valorvenda" class="form-label">Valor da Venda</label>
-          <input name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o Valor" required>
+          <label for="valorvenda" class="form-label"><b>Valor da venda</b></label>
+          <input name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o valor" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Confirmar</button>
       </form>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('form-venda').addEventListener('submit', function(event) {
+      var inputs = this.querySelectorAll('input');
+      var selects = this.querySelectorAll('select');
+      var dates = this.querySelectorAll('input[type="date"]:required');
+  
+      var isValid = true;
+  
+      inputs.forEach(function(input) {
+        if (input.value.trim() === '') {
+          isValid = false;
+        }
+      });
+  
+      selects.forEach(function(select) {
+        if (select.value.trim() === '') {
+          isValid = false;
+        }
+      });
+  
+      dates.forEach(function(date) {
+        if (date.value.trim() === '') {
+          isValid = false;
+        }
+      });
+  
+      if (!isValid) {
+        event.preventDefault();
+        alert('Por favor, preencha todos os campos do formulário.');
+      }
+    });
+  </script>
 </body>
 </html>
