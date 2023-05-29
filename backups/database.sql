@@ -39,12 +39,12 @@ VALUES
 
 INSERT INTO funcionario (idfuncionario, nome, codcargo, salario, dataadmissao)
 VALUES
-    (10, 'Cafu', 1, 10000, '2002-06-30'),
+    (10, 'Ronaldinho Gaúcho', 3, 10000, '2002-06-30'),
     (11, 'Roberto Carlos', 2, 12000, '2002-06-30'),
-    (12, 'Ronaldo', 3, 15000, '2002-06-30'),
+    (12, 'Ronaldo', 1, 15000, '2002-06-30'),
     (13, 'Rivaldo', 1, 13000, '2002-06-30'),
-    (14, 'Ronaldinho Gaúcho', 2, 14000, '2002-06-30'),
-    (15, 'Kleberson', 3, 11000, '2002-06-30'),
+    (14, 'Cafu', 1, 14000, '2002-06-30'),
+    (15, 'Kleberson', 2, 11000, '2002-06-30'),
     (16, 'Gilberto Silva', 1, 11000, '2002-06-30');
 
 INSERT INTO cliente (idCliente, nome, endereco, telefone, email, ehFlamengo, ehOtaku, ehSousa)
