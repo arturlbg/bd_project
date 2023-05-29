@@ -53,7 +53,7 @@
             </div>
         </div>
         <p>Modelo com maior quantidade em estoque: {{modeloFrequente.0}}</p>
-        <p>Valor total de veículos: {{valorTotal.0}}</p>
+        <p>Valor total de veículos: R$ {{valorTotal.0}}</p>
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
@@ -80,11 +80,11 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{x.codmarca.nomemarca}}</td>
+                        <td>{{x.nomemarca}}</td>
                         <td>{{x.numportas}}</td>
                         <td>{{x.ano}}</td>
                         <td>{{x.cor}}</td>
-                        <td>{{x.valor}}</td>
+                        <td>R$ {{x.valor}}</td>
                         <td>{% if x.statusvenda %}Sim{% else %}Não{% endif %}</td>
                         <td>
                             <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn btn-info">Editar</button>
