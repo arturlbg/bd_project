@@ -4,21 +4,31 @@ import json
 from datetime import date
 
 class VeiculoService:
+    '''
+    TypeError: Object of type Decimal is not JSON serializable
+[29/May/2023 13:20:56] "GET /veiculo/ HTTP/1.1" 500 104262
+    '''
+
     def findAll(self):
         repository = VeiculoRepository()
         obj = repository.findAll()
+        print(obj)
         obj_modified = []
+
         for item in obj:
             item_dict = {
                 'idveiculo': item[0],
                 'valor': float(item[1]),
-                'codmarca': item[2],
-                'numportas': item[3],
-                'ano': item[4],
-                'modelo': item[5],
-                'cor': item[6]
+                'numportas': item[2],
+                'ano': item[3],
+                'modelo': item[4],
+                'cor': item[5],
+                'statusvenda': item[6],
+                'codmarca': item[7],
             }
             obj_modified.append(item_dict)
+
+        print(obj_modified)
 
         json_data = json.dumps(obj_modified)
         return json_data
@@ -48,12 +58,13 @@ class VeiculoService:
         for item in obj:
             item_dict = {
                 'idveiculo': item[0],
-                'valor': float(item[1]),
-                'codmarca': item[2],
+                'codmarca': item[1],
+                'valor': float(item[2]),
                 'numportas': item[3],
                 'ano': item[4],
                 'modelo': item[5],
-                'cor': item[6]
+                'cor': item[6],
+                'statusvenda': item[7]
             }
             obj_modified.append(item_dict)
 

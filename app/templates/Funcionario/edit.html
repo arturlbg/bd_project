@@ -28,26 +28,26 @@
                 {% csrf_token %}
 
                 <div class="mb-3">
-                    <label for="nome" class="form-label">Nome completo</label>
+                    <label for="nome" class="form-label"><b>Nome completo</b></label>
                     <input value="{{obj.1}}" name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
                 </div>
 
                 <div class="mb-3">
-                    <label for="codcargo" class="form-label">Código do cargo</label>
+                    <label for="codcargo" class="form-label"><b>Código do cargo</b></label>
                     <input value={{obj.2}}  name="codcargo" type="text" class="form-control" id="codcargo" placeholder="Insira o código do cargo" required minlength="1" maxlength="1">
                 </div>
 
                 <div class="mb-3">
-                    <label for="salario" class="form-label">Salário</label>
+                    <label for="salario" class="form-label"><b>Salário</b></label>
                     <input value={{obj.3}} name="salario" type="number" class="form-control" id="salario" placeholder="Insira o salário" required minlength="4" maxlength="6">
                 </div>
 
                 <div class="mb-3">
-                    <label for="dataadmissao" class="form-label">Data de admissão</label>
+                    <label for="dataadmissao" class="form-label"><b>Data de admissão</b></label>
                     <input value={{obj.4}} name="dataadmissao" type="date" class="form-control" id="dataadmissao" placeholder="Insira a data de admissão" required>
                 </div>
 
-                <button type="submit" class="btn btn-success">Atualizar</button>
+                <button type="submit" class="btn btn-success"><b>Atualizar</b></button>
             
             </form>
 

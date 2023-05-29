@@ -59,12 +59,14 @@
                 <thead class="bg-light">
                     <tr>
                         <th>Modelo</th>
-                        <th>Código da marca</th>
+                        <th>Fabricante</th>
                         <th>Nº de portas</th>
                         <th>Ano</th>
                         <th>Cor</th>
                         <th>Valor</th>
+                        <th>Vendido</th>
                         <th>Ações</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -78,15 +80,17 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{x.codmarca}}</td>
+                        <td>{{x.codmarca.nomemarca}}</td>
                         <td>{{x.numportas}}</td>
                         <td>{{x.ano}}</td>
                         <td>{{x.cor}}</td>
                         <td>{{x.valor}}</td>
+                        <td>{% if x.statusvenda %}Sim{% else %}Não{% endif %}</td>
                         <td>
                             <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn btn-info">Editar</button>
                             <button onclick="deleteById('{{x.idveiculo}}')" type="button" class="btn btn-danger">Deletar</button>
                         </td>
+
                     </tr>
                     {% endfor %}
                 </tbody>

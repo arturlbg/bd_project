@@ -18,8 +18,8 @@ class VeiculoRepository:
     def create(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
-            values = "'{}', '{}', '{}', '{}', '{}', {}".format(data["modelo"], data["numportas"], data["ano"], data["codmarca"], data["cor"], data["valor"])
-            query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca, cor, valor) VALUES (" + values + ")" 
+            values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["modelo"], data["numportas"], data["ano"], data["codmarca"], data["cor"], data["valor"], data["statusvenda"])
+            query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca, cor, valor, statusvenda) VALUES (" + values + ")"
             cursor.execute(query)
 
     def update(self, modelo):
@@ -181,29 +181,6 @@ class FuncionarioRepository:
             result = cursor.fetchall()
 
         return result
-
-    
-class ServicoRepository:
-    def findAll(self):
-        with connection.cursor() as cursor:
-            query = "SELECT * FROM public.servico"
-            cursor.execute(query)
-            results = cursor.fetchall()
-        return results
-
-    def findById(self, id):
-        with connection.cursor() as cursor:
-            query = "SELECT * FROM public.servico WHERE idServico = %s"
-            cursor.execute(query, [id])
-            result = cursor.fetchone()
-        return result
-    
-    def create(self, modelo):
-        with connection.cursor() as cursor:
-            data = modelo.cleaned_data
-            values = "'{}', '{}', '{}', '{}'".format(data["idveiculo"].idveiculo, data["codservico"], data["valorservico"], data["dataservico"])
-            query = "INSERT INTO public.servico (idveiculo, codservico, valorservico, dataservico) VALUES (" + values + ")" 
-            cursor.execute(query)
 
 class VendaRepository:
     def findAll(self):
