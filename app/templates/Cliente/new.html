@@ -22,31 +22,31 @@
     <div class="container">
         <div class="form-container">
             <h1>Cadastro de cliente</h1>
-            <form class="needs-validation" method="post" novalidate>
+            <form id="form-cliente" class="needs-validation" method="post" novalidate>
                 {% csrf_token %}
 
                 <div class="mb-3">
-                    <label for="nome" class="form-label">Nome completo</label>
+                    <label for="nome" class="form-label"><b>Nome completo</b></label>
                     <input name="nome" type="text" class="form-control" id="nome" placeholder="Insira o nome" required minlength="3" maxlength="100">
                 </div>
 
                 <div class="mb-3">
-                    <label for="endereco" class="form-label">Endereço</label>
+                    <label for="endereco" class="form-label"><b>Endereço</b></label>
                     <input name="endereco" type="text" class="form-control" id="endereco" placeholder="Insira o endereço" required minlength="3" maxlength="100">
                 </div>
 
                 <div class="mb-3">
-                    <label for="telefone" class="form-label">Telefone</label>
+                    <label for="telefone" class="form-label"><b>Telefone</b></label>
                     <input name="telefone" type="text" class="form-control" id="telefone" placeholder="Insira o telefone" required minlength="3" maxlength="14">
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
+                    <label for="email" class="form-label"><b>E-mail</b></label>
                     <input name="email" type="text" class="form-control" id="email" placeholder="Insira o e-mail" required minlength="3" maxlength="50">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Você é flamenguista?</label>
+                    <label class="form-label"><b>Você é flamenguista?</b></label>
                     <div class="form-check">
                         <input name="ehflamengo" type="radio" id="ehflamengo" class="form-check-input" value="false" required>
                         <label class="form-check-label" for="ehflamengo">Não</label>
@@ -58,7 +58,7 @@
                 </div>
             
                 <div class="mb-3">
-                    <label class="form-label">Você é otaku?</label>
+                    <label class="form-label"><b>Você é otaku?</b></label>
                     <div class="form-check">
                         <input name="ehotaku" type="radio" id="ehotaku-nao" class="form-check-input" value="false" required>
                         <label class="form-check-label" for="ehotaku-nao">Não</label>
@@ -70,7 +70,7 @@
                 </div>
             
                 <div class="mb-3">
-                    <label class="form-label">Você nasceu em Sousa-PB?</label>
+                    <label class="form-label"><b>Você nasceu em Sousa-PB?</b></label>
                     <div class="form-check">
                         <input name="ehsousa" type="radio" id="ehsousa" class="form-check-input" value="false" required>
                         <label class="form-check-label" for="ehsousa">Não</label>
@@ -86,5 +86,36 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('form-cliente').addEventListener('submit', function(event) {
+            var inputs = this.querySelectorAll('input');
+            var radios = this.querySelectorAll('input[type="radio"]:required');
+    
+            var isValid = true;
+    
+            inputs.forEach(function(input) {
+                if (input.value.trim() === '') {
+                    isValid = false;
+                }
+            });
+    
+            radios.forEach(function(radio) {
+                var name = radio.name;
+                var radiosWithSameName = document.getElementsByName(name);
+                var checked = Array.prototype.slice.call(radiosWithSameName).some(function(radio) {
+                    return radio.checked;
+                });
+                if (!checked) {
+                    isValid = false;
+                }
+            });
+    
+            if (!isValid) {
+                event.preventDefault();
+                alert('Por favor, preencha todos os campos do formulário.');
+            }
+        });
+    </script>
 </body>
 </html>
