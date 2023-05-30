@@ -43,13 +43,13 @@
         </div>
 
         <div class="mb-3">
-          <label for="datavenda" class="form-label"><b>Data da venda</b></label>
-          <input name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a data" required></input>
+          <label for="valorvenda" class="form-label"><b>Valor da venda</b></label>
+          <input name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o valor" required min="68250">
         </div>
 
         <div class="mb-3">
-          <label for="valorvenda" class="form-label"><b>Valor da venda</b></label>
-          <input name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o valor" required>
+          <label for="datavenda" class="form-label"><b>Data da venda</b></label>
+          <input name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a data" required min="2020-01-01" max="">
         </div>
 
         <button type="submit" class="btn btn-success">Confirmar</button>
@@ -89,5 +89,26 @@
       }
     });
   </script>
+
+  <script>
+    var inputDate = document.getElementById("datavenda");
+
+    var hoje = new Date();
+    var dd = hoje.getDate();
+    var mm = hoje.getMonth() + 1; 
+    var yyyy = hoje.getFullYear();
+
+    if (dd < 10) {
+      dd = "0" + dd; 
+    }
+    if (mm < 10) {
+      mm = "0" + mm; 
+    }
+
+    var dataMax = yyyy + "-" + mm + "-" + dd;
+    
+    inputDate.max = dataMax;
+  </script>
+
 </body>
 </html>

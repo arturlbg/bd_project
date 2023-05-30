@@ -64,8 +64,17 @@
                 </div>
             </div>
             
-            <p>Salário mais alto: R$ {{maiorSalario.0}}</p>
-            <p>Folha salarial: R$ {{totalSalario.0}}</p>
+            {% if maiorSalario.0 %}
+                <p>Salário mais alto: R$ {{ maiorSalario.0 }}</p>
+            {% else %}
+                <p>Salário mais alto: R$ 0,00</p>
+            {% endif %}
+        
+            {% if totalSalario.0 %}
+                <p>Folha salarial: R$ {{ totalSalario.0 }}</p>
+            {% else %}
+                <p>Folha salarial: R$ 0,00</p>
+            {% endif %}
 
             <div class="table-responsive">
                 <table class="table align-middle mb-0 bg-white">

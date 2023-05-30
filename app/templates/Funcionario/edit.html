@@ -44,31 +44,33 @@
 
                 <div class="mb-3">
                     <label for="dataadmissao" class="form-label"><b>Data de admissão</b></label>
-                    <input value={{obj.4}} name="dataadmissao" type="date" class="form-control" id="dataadmissao" placeholder="Insira a data de admissão" required>
+                    <input value={{obj.4}} name="dataadmissao" type="date" class="form-control" id="dataadmissao" placeholder="Insira a data de admissão" required min="2020-01-01" max="">
                 </div>
 
                 <button type="submit" class="btn btn-success"><b>Atualizar</b></button>
-            
             </form>
-
-
-
-
-
-
-
-
-
-
-            </form>
-
-
-
         </div>
-
-
-
     </div>
+
+    <script>
+        var inputDate = document.getElementById("dataadmissao");
+      
+        var hoje = new Date();
+        var dd = hoje.getDate();
+        var mm = hoje.getMonth() + 1; 
+        var yyyy = hoje.getFullYear();
+      
+        if (dd < 10) {
+          dd = "0" + dd; 
+        }
+        if (mm < 10) {
+          mm = "0" + mm; 
+        }
+      
+        var dataMax = yyyy + "-" + mm + "-" + dd;
+        
+        inputDate.max = dataMax;
+      </script>
 
 </body>
 </html>

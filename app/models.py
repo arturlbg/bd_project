@@ -25,8 +25,8 @@ class Veiculo(models.Model):
     idveiculo = models.AutoField(primary_key=True, null=False)
     codmarca = models.ForeignKey(Marca, on_delete=models.CASCADE, null=False)
     valor = models.DecimalField(max_digits=7, decimal_places=2, null=False)
-    numportas = models.CharField(max_length=1, null=False)
-    ano = models.CharField(max_length=4, null=False)
+    numportas = models.IntegerField(null=False)
+    ano = models.IntegerField(null=False)
     modelo = models.CharField(max_length=30, null=False)
     cor = models.CharField(max_length=20, null=False)
     statusvenda = models.BooleanField(null=False)
@@ -39,8 +39,8 @@ class Veiculo(models.Model):
 
 class Funcionario(models.Model):
     idfuncionario = models.AutoField(primary_key=True, null=False)
+    codcargo = models.ForeignKey(Cargo, on_delete=models.CASCADE, null=False)
     nome = models.CharField(max_length=100, null=False)
-    codcargo = models.CharField(max_length=20, null=False)
     salario = models.DecimalField(max_digits=7, decimal_places=2, null=False)
     dataadmissao = models.DateField(max_length=10, null=False)
     
@@ -84,6 +84,7 @@ class Venda(models.Model):
     idfuncionario = models.ForeignKey(Funcionario, on_delete=models.CASCADE, null=False)
     codpagamento = models.ForeignKey(Pagamento, on_delete=models.CASCADE, null=False)
     datavenda = models.DateField(max_length=10, null=False)
+    percentdesconto = models.DecimalField(max_digits=3, decimal_places=2, null=False)
     valorvenda = models.DecimalField(max_digits=8, decimal_places=2, null=False)
     
     def __str__(self):

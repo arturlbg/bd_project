@@ -14,7 +14,7 @@ class FuncionarioForm(forms.ModelForm):
 class VeiculoForm(forms.ModelForm):
     class Meta:
         model = Veiculo
-        fields = ['modelo', 'numportas', 'ano', 'codmarca', 'cor', 'valor', 'statusvenda']
+        fields = ['modelo', 'numportas', 'ano', 'codmarca', 'cor', 'valor']
         
 class VendaForm(forms.ModelForm):
     class Meta:

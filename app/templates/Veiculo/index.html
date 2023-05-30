@@ -53,13 +53,19 @@
             </div>
         </div>
         <p>Modelo com maior quantidade em estoque: {{modeloFrequente.0}}</p>
-        <p>Valor total de veículos: R$ {{valorTotal.0}}</p>
+
+        {% if valorTotal.0 %}
+            <p>Valor total de veículos: R$ {{valorTotal.0}}</p>
+        {% else %}
+            <p>Valor total de veículos: R$ 0,00</p>
+        {% endif %}
+        
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
                         <th>Modelo</th>
-                        <th>Fabricante</th>
+                        <th>Marca</th>
                         <th>Nº de portas</th>
                         <th>Ano</th>
                         <th>Cor</th>

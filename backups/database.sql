@@ -37,7 +37,7 @@ VALUES
     (18, 'Odyssey', 1, 4, 2021, 'Laranja', 76000, false),
     (19, 'Ridgeline', 2, 4, 2023, 'Roxo', 82000, false);
 
-INSERT INTO funcionario (idfuncionario, nome, codcargo, salario, dataadmissao)
+INSERT INTO funcionario (idfuncionario, nome, codcargo_id, salario, dataadmissao)
 VALUES
     (10, 'Ronaldinho Gaúcho', 3, 9999, '2002-06-30'),
     (11, 'Roberto Carlos', 2, 5700, '2002-06-30'),
