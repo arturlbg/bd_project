@@ -19,7 +19,7 @@ class VeiculoRepository:
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
             values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["modelo"], data["numportas"], data["ano"], data["codmarca"], data["cor"], data["valor"], data["statusvenda"])
-            query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca, cor, valor, statusvenda) VALUES (" + values + ")"
+            query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca_id, cor, valor, statusvenda) VALUES (" + values + ")"
             cursor.execute(query)
 
     def update(self, modelo):
@@ -220,4 +220,47 @@ class VendaRepository:
             query = query = "SELECT SUM(valorvenda) AS venda_total FROM public.venda;"
             cursor.execute(query)
             result = cursor.fetchone()
+        return result
+    
+class MarcaRepository:
+    def findAll(self):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.marca"
+            cursor.execute(query)
+            results = cursor.fetchall()
+        return results
+
+    def findById(self, id):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.marca WHERE idMarca = %s"
+            cursor.execute(query, [id])
+            result = cursor.fetchone()
+        return result
+    
+    def create(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "'{}'".format(data["nomemarca"])
+            query = "INSERT INTO public.marca (nomemarca) VALUES (" + values + ")" 
+            cursor.execute(query)
+
+    def update(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "nomemarca = '{}'".format(data["nomemarca"])
+            query = "UPDATE public.marca SET {} WHERE idMarca = {}".format(values, data["idmarca"]) 
+            cursor.execute(query)
+    
+    def delete(self, id):
+        with connection.cursor() as cursor:
+            query = "DELETE FROM public.marca WHERE idMarca = %s"
+            cursor.execute(query, [id])
+
+    def findByNome(self, nome):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.marca WHERE LOWER(nomemarca) LIKE LOWER('%{}%')".format(nome)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
         return result

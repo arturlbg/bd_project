@@ -23,26 +23,35 @@
       <h1>Efetivar nova venda</h1>
       <form id="form-venda" class="needs-validation" method="post" novalidate>
         {% csrf_token %}
-        <label for="idveiculo" class="form-label"><b>Selecione o modelo</b></label>
-        <select name="idveiculo"  class="form-control" id="idveiculo" placeholder="Selecione o veículo">
-          {% for x in veiculo %}
-            <option value={{x.idveiculo}}>{{x.modelo}}</option>
-          {% endfor %}
-        </select>
-        <label for="idcliente" class="form-label"><b>Selecione o cliente</b></label>
-        <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o cliente">
-          {% for x in cliente %}
-            <option value={{x.idcliente}}>{{x.nome}}</option>
-          {% endfor %}
-        </select>
+
+        <div class="mb-3">
+          <label for="idveiculo" class="form-label"><b>Selecione o modelo</b></label>
+          <select name="idveiculo"  class="form-control" id="idveiculo" placeholder="Selecione o veículo">
+            {% for x in veiculo %}
+              <option value={{x.idveiculo}}>{{x.modelo}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="idcliente" class="form-label"><b>Selecione o cliente</b></label>
+          <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o cliente">
+            {% for x in cliente %}
+              <option value={{x.idcliente}}>{{x.nome}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
         <div class="mb-3">
           <label for="datavenda" class="form-label"><b>Data da venda</b></label>
           <input name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a data" required></input>
         </div>
+
         <div class="mb-3">
           <label for="valorvenda" class="form-label"><b>Valor da venda</b></label>
           <input name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o valor" required>
         </div>
+
         <button type="submit" class="btn btn-success">Confirmar</button>
       </form>
     </div>

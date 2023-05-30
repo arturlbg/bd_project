@@ -62,14 +62,35 @@ def search_veiculo(request, modelo):
     }
     return render(request, 'Veiculo/search.html', context)
 
+
 def novo_veiculo(request):
+    if request.method == 'POST':
+        form = VeiculoForm(request.POST)
+        if form.is_valid():
+            service = VeiculoService()
+
+            codmarca_nome = request.POST.get('codmarca')  
+            marca = Marca.objects.get(nomemarca=codmarca_nome) 
+            form.instance.codmarca = marca 
+
+            service.create(form)
+
+    marca_service = MarcaService()
+    marcas = json.loads(marca_service.findAll())
+
+    context = {
+        "marcas": marcas,
+    }
+    return render(request, 'Veiculo/new.html', context)
+
+'''def novo_veiculo(request):
     if request.method == 'POST':
         form = VeiculoForm(request.POST)
         if form.is_valid():
             service = VeiculoService()
             service.create(form)
 
-    return render(request, 'Veiculo/new.html')
+    return render(request, 'Veiculo/new.html')'''
 
 ########################################################################CLIENTE########################################################################
 

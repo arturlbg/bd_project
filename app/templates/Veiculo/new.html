@@ -27,10 +27,16 @@
           <label for="modelo" class="form-label"><b>Modelo</b></label>
           <input name="modelo" type="text" class="form-control" id="modelo" placeholder="Insira o modelo" required minlength="3" maxlength="20">
         </div>
+
         <div class="mb-3">
-            <label for="codmarca" class="form-label"><b>Código da marca</b></label>
-            <input name="codmarca" type="text" class="form-control" id="codmarca" placeholder="Insira o código da marca" requiredmaxlength="2">
-          </div>
+          <label for="codmarca_id" class="form-label"><b>Selecione a marca</b></label>
+          <select name="codmarca_id"  class="form-control" id="codmarca_id" placeholder="Selecione a marca">
+            {% for x in marcas %}
+              <option value={{x.codmarca_id}}>{{x.nome}}</option>
+            {% endfor %}
+          </select>
+        </div>
+          
         <div class="mb-3">
           <label for="numportas" class="form-label"><b>Número de portas</b></label>
           <input name="numportas" type="text" class="form-control" id="numportas" placeholder="Insira o número de portas" required minlength="1" maxlength="1"></input>
@@ -55,7 +61,7 @@
   <script>
     document.getElementById('form-veiculo').addEventListener('submit', function(event) {
         var inputs = this.querySelectorAll('input');
-        var radios = this.querySelectorAll('input[type="radio"]:required');
+        var selects = this.querySelectorAll('select');
 
         var isValid = true;
 
@@ -65,15 +71,10 @@
             }
         });
 
-        radios.forEach(function(radio) {
-            var name = radio.name;
-            var radiosWithSameName = document.getElementsByName(name);
-            var checked = Array.prototype.slice.call(radiosWithSameName).some(function(radio) {
-                return radio.checked;
-            });
-            if (!checked) {
-                isValid = false;
-            }
+        selects.forEach(function(select) {
+          if (select.value.trim() === '') {
+            isValid = false;
+          }
         });
 
         if (!isValid) {
