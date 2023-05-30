@@ -117,15 +117,17 @@ class FuncionarioService:
     def findAll(self):
         repository = FuncionarioRepository()
         obj = repository.findAll()
+        print(obj)
         # Converter cada tupla em um dicionário e alterar a chave 'dataadmissao' para uma string formatada
         obj_modified = []
         for item in obj:
             item_dict = {
                 'idfuncionario': item[0],
                 'nome': item[1],
-                'codcargo': item[2],
-                'salario': float(item[3]),
-                'dataadmissao': item[4].strftime('%Y-%m-%d')
+                'salario': float(item[2]),
+                'dataadmissao': item[3].strftime('%Y-%m-%d'),
+                'codcargo': item[4]
+
             }
             obj_modified.append(item_dict)
         json_data = json.dumps(obj_modified)

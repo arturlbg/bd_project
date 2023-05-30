@@ -228,6 +228,7 @@ def venda(request):
 def novo_venda(request):
     if request.method == 'POST':
         form = VendaForm(request.POST)
+        print(form.data)
         if form.is_valid():
             service = VendaService()
             service.create(form)
