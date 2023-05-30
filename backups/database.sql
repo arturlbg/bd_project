@@ -50,12 +50,12 @@ VALUES
 INSERT INTO cliente (idCliente, nome, endereco, telefone, email, ehFlamengo, ehOtaku, ehSousa)
 VALUES
     (11, 'Sidney Magal', 'Rua dos Amores, 123', '11-987654321', 'sidney@example.com', false, false, false),
-    (12, 'Odair José', 'Avenida das Paixões, 456', '11-999999999', 'odair@example.com', false, false, false),
-    (13, 'Wando', 'Travessa dos Sonhos, 789', '11-111111111', 'wando@example.com', false, false, false),
-    (14, 'Reginaldo Rossi', 'Praça do Amor, 789', '11-222222222', 'reginaldo@example.com', false, false, false),
-    (15, 'Amado Batista', 'Rua da Saudade, 321', '11-333333333', 'amado@example.com', false, false, false),
-    (16, 'Gabigol', 'Avenida do Golaço, 666', '21-987654321', 'gabigol@example.com', true, false, false),
-    (17, 'Bruno Henrique', 'Rua dos Dribles, 777', '21-999999999', 'brunohenrique@example.com', true, false, false),
-    (18, 'Everton Ribeiro', 'Travessa dos Passes, 888', '21-111111111', 'evertonribeiro@example.com', true, false, false),
-    (19, 'Arrascaeta', 'Praça das Assistências, 999', '21-222222222', 'arrascaeta@example.com', true, false, false),
-    (20, 'Diego Alves', 'Rua dos Defesas, 333', '21-333333333', 'diegoalves@example.com', true, false, false);
+    (12, 'Odair José', 'Avenida das Paixões, 456', '11-999999999', 'odair@example.com', false, false, true),
+    (13, 'Wando', 'Travessa dos Sonhos, 789', '11-111111111', 'wando@example.com', false, true, false),
+    (14, 'Reginaldo Rossi', 'Praça do Amor, 789', '11-222222222', 'reginaldo@example.com', false, true, true),
+    (15, 'Amado Batista', 'Rua da Saudade, 321', '11-333333333', 'amado@example.com', true, false, false),
+    (16, 'Gabigol', 'Avenida do Golaço, 666', '21-987654321', 'gabigol@example.com', true, false, true),
+    (17, 'Bruno Henrique', 'Rua dos Dribles, 777', '21-999999999', 'brunohenrique@example.com', true, true, false),
+    (18, 'Everton Ribeiro', 'Travessa dos Passes, 888', '21-111111111', 'evertonribeiro@example.com', true, true, true),
+    (19, 'Arrascaeta', 'Praça das Assistências, 999', '21-222222222', 'arrascaeta@example.com', true, true, true),
+    (20, 'Diego Alves', 'Rua dos Defesas, 333', '21-333333333', 'diegoalves@example.com', true, true, true);
