@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from .service import *
 from .forms import *
 import json
@@ -259,6 +260,7 @@ def edit_venda(request, id):
             form.cleaned_data['idvenda'] = id
             service = VendaService()
             service.update(form)
+            return redirect('../../venda/')
         
     service = VendaService()
     obj = service.findById(id)
@@ -268,10 +270,20 @@ def edit_venda(request, id):
 
     cliente_service = ClienteService()
     cliente = json.loads(cliente_service.findAll())
+
+    funcionario_service = FuncionarioService()
+    funcionario = json.loads(funcionario_service.findAll())
+
+    pagamento_service = PagamentoService()
+    pagamento = json.loads(pagamento_service.findAll())
+
     context = {
         "obj": obj,
         "veiculo": veiculo,
         "cliente": cliente,
+        "funcionario": funcionario,
+        "pagamento": pagamento,
+
     }
     return render(request, 'Venda/edit.html', context)
 

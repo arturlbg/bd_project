@@ -23,30 +23,114 @@
       <h1>Editar venda</h1>
       <form class="needs-validation" method="post" novalidate>
         {% csrf_token %}
-        <label for="idveiculo" class="form-label">Veiculo</label>
-        <select name="idveiculo"  class="form-control" id="idveiculo" placeholder="Selecione o veículo">
-          {% for x in veiculo %}
-            <option value={{x.idveiculo}}>{{x.modelo}}</option>
-          {% endfor %}
-        </select>
-        <label for="idcliente" class="form-label">Cliente</label>
-        <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o Cliente">
-          {% for x in cliente %}
-            <option value={{x.idcliente}} >{{x.nome}}</option>
-          {% endfor %}
-        </select>
+
         <div class="mb-3">
-          <label for="datavenda" class="form-label">Data da Venda</label>
-          <input value="{{obj.3}}" name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a Data" required></input>
+          <label for="idveiculo" class="form-label"><b>Selecione o modelo</b></label>
+          <select name="idveiculo"  class="form-control" id="idveiculo" placeholder="Selecione o veículo">
+            {% for x in veiculo %}
+              <option value="{{ x.idveiculo }}" {% if obj.7 == x.idveiculo %}selected{% endif %}>{{ x.modelo }}</option>
+            {% endfor %}
+          </select>
         </div>
+
         <div class="mb-3">
-          <label for="valorvenda" class="form-label">Valor da Venda</label>
-          <input value="{{obj.4}}" name="valorvenda" type="text" class="form-control" id="valorvenda" placeholder="Insira o Valor" required>
+          <label for="idcliente" class="form-label"><b>Selecione o cliente</b></label>
+          <select name="idcliente" class="form-control" id="idcliente" placeholder="Selecione o cliente">
+            {% for x in cliente %}
+              <option value="{{ x.idcliente }}" {% if obj.5 == x.idcliente %}selected{% endif %}>{{ x.nome }}</option>
+            {% endfor %}
+          </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        
+        <div class="mb-3">
+          <label for="idfuncionario" class="form-label"><b>Selecione o funcionário</b></label>
+          <select name="idfuncionario" class="form-control" id="idfuncionario" placeholder="Selecione o funcionário">
+            {% for x in funcionario %}
+              <option value="{{ x.idfuncionario }}" {% if obj.6 == x.idfuncionario %}selected{% endif %}>{{ x.nome }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="codpagamento" class="form-label"><b>Selecione a forma de pagamento</b></label>
+          <select name="codpagamento" class="form-control" id="codpagamento" placeholder="Selecione a forma de pagamento">
+            {% for x in pagamento %}
+              <option value="{{ x.codpagamento }}" {% if obj.4 == x.codpagamento %}selected{% endif %}>{{ x.tipopgto }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="percentdesconto" class="form-label"><b>Percentual de desconto</b> </label>
+          <input value="{{ obj.2 }}" name="percentdesconto" type="number" class="form-control" id="percentdesconto" placeholder="Insira o Percentual" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="valorvenda" class="form-label"><b>Valor da venda</b></label>
+          <input value="{{ obj.3 }}" name="valorvenda" type="number" class="form-control" id="valorvenda" placeholder="Insira o Valor" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="datavenda" class="form-label"><b>Data da venda</b></label>
+          <input value="{{ obj.1|date:'Y-m-d' }}" name="datavenda" type="date" class="form-control" id="datavenda" placeholder="Insira a Data" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Atualizar</button>
       </form>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('form-venda').addEventListener('submit', function(event) {
+      var inputs = this.querySelectorAll('input');
+      var selects = this.querySelectorAll('select');
+      var dates = this.querySelectorAll('input[type="date"]:required');
+  
+      var isValid = true;
+  
+      inputs.forEach(function(input) {
+        if (input.value.trim() === '') {
+          isValid = false;
+        }
+      });
+  
+      selects.forEach(function(select) {
+        if (select.value.trim() === '') {
+          isValid = false;
+        }
+      });
+  
+      dates.forEach(function(date) {
+        if (date.value.trim() === '') {
+          isValid = false;
+        }
+      });
+  
+      if (!isValid) {
+        event.preventDefault();
+        alert('Por favor, preencha todos os campos do formulário.');
+      }
+    });
+  </script>
+
+  <script>
+    var inputDate = document.getElementById("datavenda");
+
+    var hoje = new Date();
+    var dd = hoje.getDate();
+    var mm = hoje.getMonth() + 1; 
+    var yyyy = hoje.getFullYear();
+
+    if (dd < 10) {
+      dd = "0" + dd; 
+    }
+    if (mm < 10) {
+      mm = "0" + mm; 
+    }
+
+    var dataMax = yyyy + "-" + mm + "-" + dd;
+    
+    inputDate.max = dataMax;
+  </script>
 </body>
 </html>

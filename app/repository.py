@@ -192,22 +192,11 @@ class VendaRepository:
 
     def findById(self, id):
         with connection.cursor() as cursor:
-            query = "SELECT * FROM public.venda WHERE idVenda = %s"
+            query = "SELECT * FROM public.venda WHERE idvenda = %s"
             cursor.execute(query, [id])
             result = cursor.fetchone()
         return result
     
-    '''
-    class Venda(models.Model):
-    idvenda = models.AutoField(primary_key=True, null=False)
-    idveiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE, null=False)
-    idcliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=False)
-    idfuncionario = models.ForeignKey(Funcionario, on_delete=models.CASCADE, null=False)
-    codpagamento = models.ForeignKey(Pagamento, on_delete=models.CASCADE, null=False)
-    datavenda = models.DateField(max_length=10, null=False)
-    percentdesconto = models.DecimalField(max_digits=3, decimal_places=2, null=False)
-    valorvenda = models.DecimalField(max_digits=8, decimal_places=2, null=False)
-    '''
     def create(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
@@ -219,13 +208,14 @@ class VendaRepository:
     def update(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
-            values = "idveiculo = '{}', idcliente = '{}', datavenda = '{}', valorvenda = '{}'".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["datavenda"], data["valorvenda"])
-            query = "UPDATE public.venda SET {} WHERE idVenda = {}".format(values, data["idvenda"]) 
+            query = "UPDATE public.venda SET idveiculo_id = '{}', idcliente_id = '{}', idfuncionario_id = '{}', codpagamento_id = '{}', datavenda = '{}', percentdesconto = '{}', valorvenda = '{}' WHERE idvenda = {}".format(
+                data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["idfuncionario"].idfuncionario, data["codpagamento"].codpagamento,
+                data["datavenda"], data["percentdesconto"], data["valorvenda"], data["idvenda"])
             cursor.execute(query)
 
     def delete(self, id):
         with connection.cursor() as cursor:
-            query = "DELETE FROM public.venda WHERE idVenda = %s"
+            query = "DELETE FROM public.venda WHERE idvenda = %s"
             cursor.execute(query, [id])
 
     def getTotalValorVenda(self):

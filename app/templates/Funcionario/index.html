@@ -105,7 +105,7 @@
                             <td>{{x.dataadmissao}}</td>
                             <td>
                                 <button onclick="location.href='/funcionario/edit/{{x.idfuncionario}}'" type="button" class="btn btn-info">Editar</button>
-                                <button onclick="deleteById('{{x.idfuncionario}}')" type="button" class="btn btn-danger">Deletar</button>
+                                <button onclick="deleteById('{{x.idfuncionario}}'); setTimeout(function() { location.reload(); }, 90);"  type="button" class="btn btn-danger">Deletar</button>
                             </td>
                         </tr>
                         {% endfor %}

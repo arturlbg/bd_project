@@ -94,7 +94,7 @@
                         <td>{% if x.statusvenda %}Sim{% else %}Não{% endif %}</td>
                         <td>
                             <button onclick="location.href='/veiculo/edit/{{x.idveiculo}}'" type="button" class="btn btn-info">Editar</button>
-                            <button onclick="deleteById('{{x.idveiculo}}')" type="button" class="btn btn-danger">Deletar</button>
+                            <button onclick="deleteById('{{x.idveiculo}}'); setTimeout(function() { location.reload(); }, 90); " type="button" class="btn btn-danger">Deletar</button>
                         </td>
 
                     </tr>

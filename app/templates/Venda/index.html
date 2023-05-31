@@ -47,7 +47,10 @@
                     <tr>
                         <th>Veículo ID</th>
                         <th>Cliente ID</th>
-                        <th>Data venda</th>
+                        <th>Funcionário ID</th>
+                        <th>Cod Pagamento</th>
+                        <th>Data da venda</th>
+                        <th>% de desconto</th>
                         <th>Valor de venda</th>
                         <th>Ações</th>
                     </tr>
@@ -64,7 +67,10 @@
                             </div>
                         </td>
                         <td>{{x.idcliente}}</td>
+                        <td>{{x.idfuncionario}}</td>
+                        <td>{{x.codpagamento}}</td>
                         <td>{{x.datavenda}}</td>
+                        <td>{{x.percentdesconto}}</td>
                         <td>R$ {{x.valorvenda}}</td>
                         <td>
                             <button onclick="location.href='/venda/edit/{{x.idvenda}}'" type="button" class="btn btn-info">Editar</button>
