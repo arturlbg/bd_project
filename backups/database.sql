@@ -3,6 +3,7 @@ DELETE FROM cliente WHERE idcliente>=1;
 DELETE FROM funcionario WHERE idfuncionario>=1;
 DELETE FROM marca WHERE codmarca >=1;
 DELETE FROM cargo WHERE codcargo >=1;
+DELETE FROM pagamento WHERE codpagamento >=1;
 
 SELECT * FROM veiculo;
 SELECT * FROM cliente;
