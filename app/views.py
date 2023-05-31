@@ -77,6 +77,10 @@ def novo_veiculo(request):
         if form.is_valid():
             service = VeiculoService()
             service.create(form)
+            return redirect('../../veiculo/')
+        
+    else:
+        form = VeiculoForm()
 
     marca_service = MarcaService()
     marcas = json.loads(marca_service.findAll())
