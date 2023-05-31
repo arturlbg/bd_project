@@ -19,5 +19,5 @@ class VeiculoForm(forms.ModelForm):
 class VendaForm(forms.ModelForm):
     class Meta:
         model = Venda
-        fields = ['idveiculo', 'idcliente', 'datavenda', 'valorvenda']
+        fields = ['idveiculo', 'idcliente', 'idfuncionario', 'codpagamento', 'percentdesconto', 'datavenda', 'valorvenda']
 

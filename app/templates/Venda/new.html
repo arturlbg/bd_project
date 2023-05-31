@@ -35,12 +35,38 @@
 
         <div class="mb-3">
           <label for="idcliente" class="form-label"><b>Selecione o cliente</b></label>
-          <select name="idcliente"  class="form-control" id="idcliente" placeholder="Selecione o cliente">
+          <select name="idcliente" class="form-control" id="idcliente" placeholder="Selecione o cliente">
             {% for x in cliente %}
               <option value={{x.idcliente}}>{{x.nome}}</option>
             {% endfor %}
           </select>
         </div>
+
+        <div class="mb-3">
+          <label for="idfuncionario" class="form-label"><b>Selecione o funcionário</b></label>
+          <select name="idfuncionario" class="form-control" id="idfuncionario" placeholder="Selecione o funcionário">
+            {% for x in funcionario %}
+              <option value={{x.idfuncionario}}>{{x.nome}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="codpagamento" class="form-label"><b>Selecione a forma de pagamento</b></label>
+          <select name="codpagamento" class="form-control" id="codpagamento" placeholder="Selecione a forma de pagamento">
+            {% for x in pagamento %}
+              <option value={{x.codpagamento}}>{{x.tipopgto}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!--Se o cliente for flamenguista, ou otaku ou de sousa, aplica-se um desconto de 3% do valor total do veiculo  -->
+
+        <div class="mb-3">
+          <label for="percentdesconto" class="form-label"><b>Desconto</b></label>
+          <input name="percentdesconto" type="number" class="form-control" id="desconto" placeholder="Insira o desconto" required min="3" max="9">
+        </div>
+
 
         <div class="mb-3">
           <label for="valorvenda" class="form-label"><b>Valor da venda</b></label>

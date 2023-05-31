@@ -117,7 +117,6 @@ class FuncionarioService:
     def findAll(self):
         repository = FuncionarioRepository()
         obj = repository.findAll()
-        print(obj)
         # Converter cada tupla em um dicionário e alterar a chave 'dataadmissao' para uma string formatada
         obj_modified = []
         for item in obj:
@@ -189,9 +188,12 @@ class VendaService:
             item_dict = {
                 'idvenda': item[0],
                 'datavenda': item[1].strftime('%Y-%m-%d'),
-                'valorvenda': float(item[2]),
-                'idcliente': item[3],
-                'idveiculo': item[4],
+                'percentdesconto': float(item[2]),
+                'valorvenda': float(item[3]),
+                'codpagamento': item[4],
+                'idcliente': item[5],
+                'idfuncionario': item[6],
+                'idveiculo': item[7],
             }
             obj_modified.append(item_dict)
 
@@ -247,4 +249,35 @@ class MarcaService:
         repository = MarcaRepository()
         obj = repository.findByNome(nome)
         json = convert_to_json.convert_to_json(['codmarca', 'nome'], obj)
+        return json
+
+
+class PagamentoService:
+    def findAll(self):
+        repository = PagamentoRepository()
+        obj = repository.findAll()
+        json = convert_to_json.convert_to_json(['codpagamento', 'tipopgto', 'statusConfirmacao'], obj)
+        return json
+
+    def findById(self, id):
+        repository = PagamentoRepository()
+        obj = repository.findById(id)
+        return obj
+    
+    def create(self, modelo):
+        repository = PagamentoRepository()
+        repository.create(modelo)
+
+    def update(self, modelo):
+        repository = PagamentoRepository()
+        repository.update(modelo)
+
+    def delete(self, id):
+        repository = PagamentoRepository()
+        repository.delete(id)
+
+    def findByTipoPgto(self, tipoPgto):
+        repository = PagamentoRepository()
+        obj = repository.findByTipoPgto(tipoPgto)
+        json = convert_to_json.convert_to_json(['codpagamento', 'tipopgto', 'statusConfirmacao'], obj)
         return json

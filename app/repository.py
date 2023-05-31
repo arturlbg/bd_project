@@ -208,11 +208,11 @@ class VendaRepository:
     percentdesconto = models.DecimalField(max_digits=3, decimal_places=2, null=False)
     valorvenda = models.DecimalField(max_digits=8, decimal_places=2, null=False)
     '''
-
     def create(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
-            values = "'{}', '{}', {}, {}, '{}', '{}', {}, '{}'".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, 1, 1, data["datavenda"], 0, data["valorvenda"])
+            values = "'{}', '{}', '{}', '{}', '{}', '{}', '{}'".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["idfuncionario"].idfuncionario, data["codpagamento"].codpagamento,
+                                                                        data["datavenda"], data["percentdesconto"], data["valorvenda"])
             query = "INSERT INTO public.venda (idveiculo_id, idcliente_id, idfuncionario_id, codpagamento_id, datavenda, percentdesconto, valorvenda) VALUES (" + values + ")" 
             cursor.execute(query)
 
@@ -272,6 +272,49 @@ class MarcaRepository:
     def findByNome(self, nome):
         with connection.cursor() as cursor:
             query = "SELECT * FROM public.marca WHERE LOWER(nomemarca) LIKE LOWER('%{}%')".format(nome)
+
+            cursor.execute(query)
+            result = cursor.fetchall()
+
+        return result
+    
+class PagamentoRepository:
+    def findAll(self):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.pagamento"
+            cursor.execute(query)
+            results = cursor.fetchall()
+        return results
+
+    def findById(self, id):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.pagamento WHERE codPagamento = %s"
+            cursor.execute(query, [id])
+            result = cursor.fetchone()
+        return result
+    
+    def create(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "'{}', '{}'".format(data["tipopgto"], data["statusConfirmacao"])
+            query = "INSERT INTO public.pagamento (tipopgto, statusConfirmacao) VALUES (" + values + ")" 
+            cursor.execute(query)
+
+    def update(self, modelo):
+        with connection.cursor() as cursor:
+            data = modelo.cleaned_data
+            values = "tipopgto = '{}', statusConfirmacao = '{}'".format(data["tipopgto"], data["statusConfirmacao"])
+            query = "UPDATE public.pagamento SET {} WHERE codPagamento = {}".format(values, data["codpagamento"]) 
+            cursor.execute(query)
+    
+    def delete(self, id):
+        with connection.cursor() as cursor:
+            query = "DELETE FROM public.pagamento WHERE codPagamento = %s"
+            cursor.execute(query, [id])
+
+    def findByTipo(self, tipo):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.pagamento WHERE LOWER(tipopgto) LIKE LOWER('%{}%')".format(tipo)
 
             cursor.execute(query)
             result = cursor.fetchall()

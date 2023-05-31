@@ -9,6 +9,14 @@ SELECT * FROM cliente;
 SELECT * FROM funcionario;
 SELECT * FROM marca;
 SELECT * FROM cargo;
+SELECT * FROM venda;
+
+INSERT INTO pagamento (codpagamento, tipopgto, statusconfirmacao)
+VALUES
+	(1, 'Cartão', true),
+	(2, 'Boleto', true),
+	(3, 'Pix', true),
+	(4, 'Berries', true);
 
 INSERT INTO marca (codmarca, nomemarca)
 VALUES

@@ -69,7 +69,7 @@ class Cliente(models.Model):
 class Pagamento(models.Model):
     codpagamento = models.AutoField(primary_key=True, null=False)
     tipopgto = models.CharField(max_length=30, null=False)
-    statusConfirmacao = models.BooleanField(null=False)
+    statusconfirmacao = models.BooleanField(null=False)
 
     def __str__(self):
         return self.tipopgto

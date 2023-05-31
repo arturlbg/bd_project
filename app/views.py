@@ -228,7 +228,6 @@ def venda(request):
 def novo_venda(request):
     if request.method == 'POST':
         form = VendaForm(request.POST)
-        print(form.data)
         if form.is_valid():
             service = VendaService()
             service.create(form)
@@ -238,16 +237,24 @@ def novo_venda(request):
 
     cliente_service = ClienteService()
     cliente = json.loads(cliente_service.findAll())
+
+    funcionario_service = FuncionarioService()
+    funcionario = json.loads(funcionario_service.findAll())
+
+    pagamento_service = PagamentoService()
+    pagamento = json.loads(pagamento_service.findAll())
+
     context = {
         "veiculo": veiculo,
         "cliente": cliente,
+        "funcionario": funcionario,
+        "pagamento": pagamento,
     }
     return render(request, 'Venda/new.html', context)
 
 def edit_venda(request, id):
     if request.method == 'POST':
         form = VendaForm(request.POST)
-        print(form.data)
         if form.is_valid():
             form.cleaned_data['idvenda'] = id
             service = VendaService()

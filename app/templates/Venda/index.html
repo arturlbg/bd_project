@@ -67,8 +67,8 @@
                         <td>{{x.datavenda}}</td>
                         <td>R$ {{x.valorvenda}}</td>
                         <td>
-                            <button onclick="location.href='/venda/edit/{{x.idvenda}}'" type="button" class="btn-link btn-sm btn-rounded">Editar</button>
-                            <button onclick="deleteById('{{x.idvenda}}')" type="button" class="btn-link btn-sm btn-rounded">Deletar</button>
+                            <button onclick="location.href='/venda/edit/{{x.idvenda}}'" type="button" class="btn btn-info">Editar</button>
+                            <button onclick="deleteById('{{x.idvenda}}')" type="button" class="btn btn-danger">Deletar</button>
                         </td>
                     </tr>
                     {% endfor %}
