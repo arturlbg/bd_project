@@ -18,15 +18,16 @@ class VeiculoRepository:
     def create(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
-            values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["modelo"], data["numportas"], data["ano"], data["codmarca"], data["cor"], data["valor"], data["statusvenda"])
+            values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["modelo"], data["numportas"], data["ano"], data["codmarca"].codmarca, data["cor"], data["valor"], False)
+            print(values)
             query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca_id, cor, valor, statusvenda) VALUES (" + values + ")"
             cursor.execute(query)
 
     def update(self, modelo):
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
-            values = "modelo = '{}', numportas = '{}', ano = '{}', codmarca = '{}', cor = '{}', valor = {}".format(data["modelo"], data["numportas"], data["ano"],
-                                                                                                                    data["codmarca"], data["cor"], data["valor"])
+            values = "modelo = '{}', numportas = '{}', ano = '{}', codmarca_id = '{}', cor = '{}', valor = {}".format(data["modelo"], data["numportas"], data["ano"],
+                                                                                                                    data["codmarca"].codmarca, data["cor"], data["valor"], False)
             query = "UPDATE public.veiculo SET {} WHERE idVeiculo = {}".format(values, data["idveiculo"]) 
             cursor.execute(query)
 
@@ -51,7 +52,7 @@ class VeiculoRepository:
     
     def findByModelo(self, modelo):
         with connection.cursor() as cursor:
-            query = "SELECT * FROM public.veiculo WHERE LOWER(modelo) = LOWER('{}')".format(modelo)
+            query = "SELECT * FROM public.veiculo WHERE LOWER(modelo) LIKE LOWER('%{}%')".format(modelo)
 
             cursor.execute(query)
             result = cursor.fetchall()

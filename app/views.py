@@ -33,11 +33,19 @@ def edit_veiculo(request, id):
             form.cleaned_data['idveiculo'] = id
             service = VeiculoService()
             service.update(form)
+            return redirect('../../veiculo/')
         
     service = VeiculoService()
     obj = service.findById(id)
+
+    marca_service = MarcaService()
+    marcas = json.loads(marca_service.findAll())
+
+    print(obj)
+
     context = {
         "obj": obj,
+        "marcas": marcas,
     }
     return render(request, 'Veiculo/edit.html', context)
 
@@ -63,17 +71,11 @@ def search_veiculo(request, modelo):
     }
     return render(request, 'Veiculo/search.html', context)
 
-
 def novo_veiculo(request):
     if request.method == 'POST':
         form = VeiculoForm(request.POST)
         if form.is_valid():
             service = VeiculoService()
-
-            codmarca_nome = request.POST.get('codmarca')  
-            marca = Marca.objects.get(nomemarca=codmarca_nome) 
-            form.instance.codmarca = marca 
-
             service.create(form)
 
     marca_service = MarcaService()
@@ -83,15 +85,6 @@ def novo_veiculo(request):
         "marcas": marcas,
     }
     return render(request, 'Veiculo/new.html', context)
-
-'''def novo_veiculo(request):
-    if request.method == 'POST':
-        form = VeiculoForm(request.POST)
-        if form.is_valid():
-            service = VeiculoService()
-            service.create(form)
-
-    return render(request, 'Veiculo/new.html')'''
 
 ########################################################################CLIENTE########################################################################
 
@@ -251,6 +244,7 @@ def novo_venda(request):
         "funcionario": funcionario,
         "pagamento": pagamento,
     }
+
     return render(request, 'Venda/new.html', context)
 
 def edit_venda(request, id):

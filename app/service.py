@@ -50,13 +50,13 @@ class VeiculoService:
         for item in obj:
             item_dict = {
                 'idveiculo': item[0],
-                'codmarca': item[1],
-                'valor': float(item[2]),
-                'numportas': item[3],
-                'ano': item[4],
-                'modelo': item[5],
-                'cor': item[6],
-                'statusvenda': item[7]
+                'valor': float(item[1]),
+                'numportas': item[2],
+                'ano': item[3],
+                'modelo': item[4],
+                'cor': item[5],
+                'statusvenda': item[6],
+                'codmarca': item[7],
             }
             obj_modified.append(item_dict)
 

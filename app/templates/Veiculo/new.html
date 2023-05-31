@@ -19,10 +19,11 @@
 </head>
 <body style="background-color: #e2e2e2;">
   <div class="container">
-    <div class="form-container">
+    <div class="form-container bg-light">
       <h1>Cadastro de veículo</h1>
       <form id="form-veiculo" class="needs-validation" method="post" novalidate>
         {% csrf_token %}
+        
         <div class="mb-3">
           <label for="modelo" class="form-label"><b>Modelo</b></label>
           <input name="modelo" type="text" class="form-control" id="modelo" placeholder="Insira o modelo" required minlength="3" maxlength="20">
@@ -41,18 +42,22 @@
           <label for="numportas" class="form-label"><b>Número de portas</b></label>
           <input name="numportas" type="number" class="form-control" id="numportas" placeholder="Insira o número de portas" required min="1" max="5">
         </div>
+        
         <div class="mb-3">
           <label for="ano" class="form-label"><b>Ano</b></label>
           <input name="ano" type="number" class="form-control" id="ano" placeholder="Insira o ano" required min="2017" max="2023">
         </div>
+        
         <div class="mb-3">
           <label for="cor" class="form-label"><b>Cor</b></label>
           <input name="cor" type="text" class="form-control" id="cor" placeholder="Insira a cor" required minlength="3" maxlength="20">
         </div>
+        
         <div class="mb-3">
           <label for="valor" class="form-label"><b>Valor</b></label>
           <input name="valor" type="number" class="form-control" id="valor" placeholder="Insira o valor" required min="75000" max="1000000">
         </div>
+
         <button type="submit" class="btn btn-success">Enviar</button>
       </form>
     </div>

@@ -11,6 +11,7 @@ SELECT * FROM funcionario;
 SELECT * FROM marca;
 SELECT * FROM cargo;
 SELECT * FROM venda;
+SELECT * FROM pagamento;
 
 INSERT INTO pagamento (codpagamento, tipopgto, statusconfirmacao)
 VALUES
