@@ -69,3 +69,14 @@ VALUES
     (18, 'Everton Ribeiro', 'Travessa dos Passes, 888', '21-111111111', 'evertonribeiro@example.com', true, true, true),
     (19, 'Arrascaeta', 'Praça das Assistências, 999', '21-222222222', 'arrascaeta@example.com', true, true, true),
     (20, 'Diego Alves', 'Rua dos Defesas, 333', '21-333333333', 'diegoalves@example.com', true, true, true);
+
+
+CREATE OR REPLACE PROCEDURE AtualizarStatusVenda(idveiculo_id INT)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE veiculo
+    SET statusvenda = true
+    WHERE idveiculo = idveiculo_id;
+END;
+$$;

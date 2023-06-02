@@ -3,7 +3,7 @@ from django.db import connection
 class VeiculoRepository:
     def findAll(self):
         with connection.cursor() as cursor:
-            query = "SELECT * FROM public.veiculo"
+            query = "SELECT * FROM public.veiculo WHERE statusvenda = 'false'"
             cursor.execute(query)
             results = cursor.fetchall()
         return results
@@ -203,8 +203,10 @@ class VendaRepository:
             data = modelo.cleaned_data
             values = "'{}', '{}', '{}', '{}', '{}', '{}', '{}'".format(data["idveiculo"].idveiculo, data["idcliente"].idcliente, data["idfuncionario"].idfuncionario, data["codpagamento"].codpagamento,
                                                                         data["datavenda"], data["percentdesconto"], data["valorvenda"])
-            query = "INSERT INTO public.venda (idveiculo_id, idcliente_id, idfuncionario_id, codpagamento_id, datavenda, percentdesconto, valorvenda) VALUES (" + values + ")" 
+            query = "INSERT INTO public.venda (idveiculo_id, idcliente_id, idfuncionario_id, codpagamento_id, datavenda, percentdesconto, valorvenda) VALUES (" + values + ")"
+            queryProcedure = "CALL AtualizarStatusVenda(" + str(data["idveiculo"].idveiculo) + ")"
             cursor.execute(query)
+            cursor.execute(queryProcedure)
 
     def update(self, modelo):
         with connection.cursor() as cursor:

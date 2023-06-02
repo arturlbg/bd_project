@@ -5,6 +5,9 @@ from .forms import *
 import json
 
 
+def index(request):
+    return render(request, "Inicio/index.html")
+
 ########################################################################VEICULO########################################################################
 def veiculo(request):
     service = VeiculoService()
