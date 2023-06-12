@@ -281,3 +281,25 @@ class PagamentoService:
         obj = repository.findByTipoPgto(tipoPgto)
         json = convert_to_json.convert_to_json(['codpagamento', 'tipopgto', 'statusConfirmacao'], obj)
         return json
+    
+class HistoricoVendaService:
+    def findAll(self):
+        repository = HistoricoVendaRepository()
+        obj = repository.findAll()
+        obj_modified = []
+
+        for item in obj:
+            item_dict = {
+                'datavenda': item[0].strftime('%Y-%m-%d'),
+                'valorvendafinal': float(item[1]),
+                'modeloveiculo': item[2],
+                'anoveiculo': item[3],
+                'tipopagamento': item[4],
+                'marcaveiculo': item[5],
+                'vendedor': item[6],
+                'cliente': item[6],
+            }
+            obj_modified.append(item_dict)
+
+        json_data = json.dumps(obj_modified)
+        return json_data

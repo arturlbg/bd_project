@@ -39,4 +39,5 @@ urlpatterns = [
     path('venda/edit/<int:id>', edit_venda, name='edit_venda'),
     path('venda/delete/<int:id>', delete_venda, name='delete_venda'),
     path('veiculo/search/<str:modelo>', search_veiculo, name='search_veiculo'),
+    path('historico/', historico_venda, name="historico_venda")
 ]

@@ -19,7 +19,6 @@ class VeiculoRepository:
         with connection.cursor() as cursor:
             data = modelo.cleaned_data
             values = "'{}', '{}', '{}', '{}', '{}', {}, {}".format(data["modelo"], data["numportas"], data["ano"], data["codmarca"].codmarca, data["cor"], data["valor"], False)
-            print(values)
             query = "INSERT INTO public.veiculo (modelo, numportas, ano, codmarca_id, cor, valor, statusvenda) VALUES (" + values + ")"
             cursor.execute(query)
 
@@ -313,3 +312,11 @@ class PagamentoRepository:
             result = cursor.fetchall()
 
         return result
+    
+class HistoricoVendaRepository:
+    def findAll(self):
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM public.historicovenda"
+            cursor.execute(query)
+            results = cursor.fetchall()
+        return results

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://ci.ufpb.br/ci/contents/imagens/site/logo-ci.jpeg" type="image/jpeg">
+    <title>Histórico de Vendas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+<body style="background-color: #e2e2e2;">
+    {% csrf_token %}
+    <div class="container">
+        <h1 class="text-center">📜Histórico de Venda 🚗🚙🚐</h1>
+        <hr>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Data</th>
+                        <th>Valor Final</th>
+                        <th>Modelo</th>
+                        <th>Ano</th>
+                        <th>Tipo Pagamento</th>
+                        <th>Marca</th>
+                        <th>Vendedor</th>
+                        <th>Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in obj %}
+                    <tr>
+                        <td>{{x.datavenda}}</td>
+                        <td>R$ {{x.valorvendafinal}}</td>
+                        <td>{{x.modeloveiculo}}</td>
+                        <td>{{x.anoveiculo}}</td>
+                        <td>{{x.tipopagamento}}</td>
+                        <td>{{x.marcaveiculo}}</td>
+                        <td>{{x.vendedor}}</td>
+                        <td>{{x.cliente}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

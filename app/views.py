@@ -44,7 +44,6 @@ def edit_veiculo(request, id):
     marca_service = MarcaService()
     marcas = json.loads(marca_service.findAll())
 
-    print(obj)
 
     context = {
         "obj": obj,
@@ -300,3 +299,15 @@ def delete_venda(request, id):
         "obj": obj,
     }
     return render(request, "Venda/index.html", context)
+
+########################################################################VENDA########################################################################
+
+def historico_venda(request):
+    service = HistoricoVendaService()
+    obj = service.findAll()
+    obj = json.loads(obj)
+
+    context = {
+        "obj": obj,
+    }
+    return render(request, "HistoricoVenda/index.html", context)
