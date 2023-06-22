@@ -1,8 +1,16 @@
-**This repository contains a database project for the Database subject using PostgreSQL and Django, 
-with basic Bootstrap for the front-end.**
+## This repository contains a database project for the Database subject using PostgreSQL and Django, with basic Bootstrap for the front-end.
 
 Here we address a vehicle dealership, where you can add and modify: employees, vehicles (available or not for sale), customers, and sales.
 Procedures are used in the sales process, and views are used on the sales history screen.
+
+Model:
+![image](https://github.com/arturlbg/bd_project/assets/60628919/cbe5a218-d2f4-4d36-ae1e-479238eb8b96)
+
+Some printscreens:
+![image](https://github.com/arturlbg/bd_project/assets/60628919/3dd0ec17-0d05-4514-bd63-6ce8da3be71e)
+![image](https://github.com/arturlbg/bd_project/assets/60628919/109d60fc-8d66-418c-a964-97d7e5eacbad)
+![image](https://github.com/arturlbg/bd_project/assets/60628919/143a3676-c604-4363-a129-e5f0454e4065)
+
 
 The project covered the following topics:
 - Most SQL Statements
