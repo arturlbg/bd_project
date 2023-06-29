@@ -1,4 +1,4 @@
-## This repository contains a database project for the Database subject using PostgreSQL and Django, with basic Bootstrap for the front-end.
+## This repository contains a database project for the Database course using PostgreSQL and Django, with basic Bootstrap for the front-end.
 
 Here we address a vehicle dealership, where you can add and modify: employees, vehicles (available or not for sale), customers, and sales.
 Procedures are used in the sales process, and views are used on the sales history screen.
